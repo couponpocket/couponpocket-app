@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  app:
+    volumes:
+      - app-sync:/app/:nocopy
+
+# that the important thing
+volumes:
+  app-sync:
+    external:
+      name: "${DOCKER_BASENAME}_app-sync"

@@ -1,0 +1,7 @@
+{
+  "name": "coupon-pocket",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

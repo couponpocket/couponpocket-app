@@ -48,16 +48,23 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "npm" ]; then
         shift 1
         $COMPOSE run --rm $TTY \
-            -w /var/www/html \
+            -w /app/ \
             app \
             npm "$@"
 
     elif [ "$1" == "npx" ]; then
         shift 1
         $COMPOSE run --rm $TTY \
-            -w /var/www/html \
+            -w /app/ \
             app \
             npx "$@"
+
+    elif [ "$1" == "ionic" ]; then
+        shift 1
+        $COMPOSE run --rm $TTY \
+            -w /app/ \
+            app \
+            ionic "$@"
 
     else
         $COMPOSE "$@"

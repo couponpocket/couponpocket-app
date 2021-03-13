@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">couponpocket</string>
+    <string name="title_activity_main">couponpocket</string>
+    <string name="package_name">de.couponpocket.app</string>
+    <string name="custom_url_scheme">de.couponpocket.app</string>
+</resources>

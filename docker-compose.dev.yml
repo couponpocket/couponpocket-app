@@ -2,7 +2,7 @@ version: '3.7'
 services:
   app:
     ports:
-      - "${APP_PORT}:80"
+      - "${APP_PORT}:8100"
     volumes:
       - app-sync:/app/:nocopy
 

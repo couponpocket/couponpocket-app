@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serve": "ionic serve --port=80",
+    "serve": "ionic serve",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

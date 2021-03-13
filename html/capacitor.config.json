@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "coupon-pocket",
+  "appId": "de.couponpocket.app",
+  "appName": "couponpocket",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

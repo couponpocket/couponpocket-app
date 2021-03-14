@@ -7,11 +7,9 @@
     "@capacitor/core": "^3.0.0-rc.0",
     "@capacitor/ios": "^3.0.0-rc.0",
     "@capacitor/storage": "^0.3.6",
+    "@capacitor/toast": "^0.4.6",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.6.3",
     "@types/jest": "^26.0.20",
     "@types/node": "^12.19.15",
     "@types/react": "^16.14.3",
@@ -26,6 +24,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "typescript": "^4.1.3",
+    "validator": "^13.5.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -66,7 +65,11 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.7"
+    "@capacitor/cli": "^3.0.0-rc.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "node-sass": "^5.0.0"
   },
   "description": "An Ionic project"
 }

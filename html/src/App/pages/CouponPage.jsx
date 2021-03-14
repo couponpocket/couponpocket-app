@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import useStorage from "../hooks/useStorage";
 
 import AppPage from "../components/AppPage";
 import { CouponList } from "../components/CardList";
 import NotFoundPage from "./NotFoundPage";
-import { IonBackButton } from "@ionic/react";
+import AppBackButton from "../components/AppBackButton";
 
 const CouponPage = (props) => {
     const [coupons] = useStorage('coupons');
@@ -17,7 +17,8 @@ const CouponPage = (props) => {
     if (list === undefined) return <NotFoundPage/>;
 
     return (
-        <AppPage name={list.name} className="coupons" collapse={false} buttons={<IonBackButton text="Coupons"/>}>
+        <AppPage name={list.name} className="coupons" collapse={false}
+                 buttons={<AppBackButton text="Coupons"/>}>
             <CouponList coupons={list.coupons}/>
         </AppPage>
     );

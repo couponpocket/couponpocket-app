@@ -1,6 +1,7 @@
 import React from "react";
 import { IonGrid, IonRow } from "@ionic/react";
 import { CouponCategoryCard } from "../Card";
+import Coupon from "../Coupon";
 
 export const CouponsCategoryList = ({coupons, history}) => {
 
@@ -10,7 +11,7 @@ export const CouponsCategoryList = ({coupons, history}) => {
 
     return (
         <IonGrid>
-            <IonRow className="coupons-list">
+            <IonRow className="coupon-category-list">
                 {items.map((item, index) => (
                     <CouponCategoryCard history={history} key={index} item={item}/>
                 ))}
@@ -19,15 +20,17 @@ export const CouponsCategoryList = ({coupons, history}) => {
     );
 };
 
-export const CouponList = ({coupons, name}) => {
+export const CouponList = ({coupons}) => {
 
     if (!coupons || typeof coupons !== 'object') return null;
+
+    const router = document.querySelector('ion-router-outlet');
 
     return (
         <IonGrid>
             <IonRow className="coupons-list">
                 {coupons.map((item, index) => (
-                    <CouponCategoryCard key={index} item={item}/>
+                    <Coupon key={index} item={item} router={router}/>
                 ))}
             </IonRow>
         </IonGrid>

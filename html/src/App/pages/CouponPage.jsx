@@ -17,7 +17,7 @@ const CouponPage = (props) => {
     if (list === undefined) return <NotFoundPage/>;
 
     return (
-        <AppPage name={list.name} className="coupons" collapse={false} buttons={<IonBackButton text="Coupons" />}>
+        <AppPage name={list.name} className="coupons" collapse={false} buttons={<IonBackButton text="Coupons"/>}>
             <CouponList coupons={list.coupons}/>
         </AppPage>
     );

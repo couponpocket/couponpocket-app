@@ -24,7 +24,7 @@ import './theme/variables.css';
 
 const App = () => (
     <IonApp>
-        <Routes />
+        <Routes/>
     </IonApp>
 );
 

@@ -36,9 +36,10 @@ const Tabs = () => {
     return (
         <IonTabs>
             <IonRouterOutlet>
-                <Redirect exact={true} path="/tabs" to="/tabs/coupons" />
+                <Redirect exact={true} path="/tabs" to="/tabs/coupons"/>
                 {tabs.map(({key, path, label, ...tab}) =>
-                    <Route key={key} exact={true} path={path} render={props => <tab.component name={label} {...props} />}/>
+                    <Route key={key} exact={true} path={path}
+                           render={props => <tab.component name={label} {...props} />}/>
                 )}
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
@@ -57,7 +58,7 @@ const Routes = () => (
     <IonReactRouter>
         <IonRouterOutlet>
             <Redirect exact={true} path="/" to="/tabs/coupons"/>
-            <Route path="/tabs" component={Tabs} />
+            <Route path="/tabs" component={Tabs}/>
             <Route path="/coupons/:id" component={CouponPage} exact={true}/>
         </IonRouterOutlet>
     </IonReactRouter>

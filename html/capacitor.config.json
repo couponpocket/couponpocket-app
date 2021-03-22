@@ -1,6 +1,6 @@
 {
   "appId": "de.couponpocket.app",
-  "appName": "couponpocket",
+  "appName": "Coupon Pocket",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
@@ -9,5 +9,9 @@
       "launchShowDuration": 0
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "server": {
+    "url": "http://localhost:8100",
+    "cleartext": true
+  }
 }

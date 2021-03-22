@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AppPage from "../components/AppPage";
-import { IonRefresher, IonRefresherContent, IonRouterOutlet } from "@ionic/react";
+import { IonRefresher, IonRefresherContent } from "@ionic/react";
+import { Toast } from "@capacitor/toast";
 import { getCouponCategories } from "../services";
 import useStorage from "../hooks/useStorage";
 import { CouponsCategoryList } from "../components/CardList";
@@ -19,12 +20,15 @@ const CouponCategoryPage = ({name, history}) => {
                 cacheInvalid: cacheInvalid.getTime(),
                 data: result.data
             });
-
+        } catch (exception) {
+            if (exception.name === 'NetworkError') {
+                await Toast.show({text: exception.message, position: 'top'});
+                console.log(exception.message);
+            }
+        } finally {
             if (callback) {
                 callback();
             }
-        } catch (e) {
-            console.log(e);
         }
     }
 

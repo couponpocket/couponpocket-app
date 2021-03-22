@@ -5,10 +5,13 @@ import types from "./types";
 
 const {apiEndpoint} = config;
 
-export const getCouponCategories = async (feedId, itemsPerPage, pages) => {
+export const getCouponCategories = async () => {
     try {
         return await axios.get(apiEndpoint + types.COUPON_CATEGORIES);
     } catch (e) {
-        console.log(e);
+        throw {
+            name: 'NetworkError',
+            message: 'Ein Netzwerkfehler ist aufgetreten! Bitte prüfe deine Internetverbindung.'
+        }
     }
 }

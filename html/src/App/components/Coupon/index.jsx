@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { IonButton, IonGrid, IonIcon, IonRow } from "@ionic/react";
+import React, { useState } from "react";
+import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 import AppModal from "../AppModal";
 import { CouponCard } from "../Card";
@@ -11,7 +11,9 @@ const Coupon = ({item, router}) => {
 
     return (
         <>
-            <CouponCard item={item} setShowCouponModal={setShowCouponModal}/>
+            <IonCol offset={1} size={10} offsetMd={0} sizeMd={6} sizeLg={4} sizeXl={3}>
+                <CouponCard item={item} setShowCouponModal={setShowCouponModal}/>
+            </IonCol>
             <AppModal
                 isOpen={showCouponModal}
                 onDidDismiss={() => setShowCouponModal(false)}
@@ -27,11 +29,13 @@ const Coupon = ({item, router}) => {
             >
                 <IonGrid>
                     <IonRow>
-                        <CouponCard item={item}>
-                            <div className="coupon-card-barcode">
-                                <Barcode value={item.ean} renderer="svg"/>
-                            </div>
-                        </CouponCard>
+                        <IonCol offset={1} size={10}>
+                            <CouponCard item={item}>
+                                <div className="coupon-card-barcode">
+                                    <Barcode value={item.ean} renderer="svg"/>
+                                </div>
+                            </CouponCard>
+                        </IonCol>
                     </IonRow>
                 </IonGrid>
             </AppModal>

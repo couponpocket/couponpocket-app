@@ -20,7 +20,7 @@ export const CouponCategoryCard = ({item, history, ...htmlProps}) => {
     );
 };
 
-export const CouponCard = ({item, setShowCouponModal = null, children = null}) => {
+export const CouponCard = ({item, setShowCouponModal = null, children = null, showLogo = false}) => {
     const onCouponClick = () => {
         if (!setShowCouponModal) {
             return null;
@@ -30,16 +30,14 @@ export const CouponCard = ({item, setShowCouponModal = null, children = null}) =
     };
 
     return (
-        <IonCol offset={1} size={10} offsetMd={0} sizeMd={6} sizeLg={4} sizeXl={3}>
-            <IonCard onClick={onCouponClick} className={"coupon-card"}>
-                <IonText color="primary">
-                    <h2>{item.points} °P</h2>
-                </IonText>
-                <IonCardContent>
-                    {item.condition}
-                </IonCardContent>
-                {children}
-            </IonCard>
-        </IonCol>
+        <IonCard onClick={onCouponClick} className={"coupon-card"}>
+            <IonText color="primary">
+                <h2>{item.points} °P</h2>
+            </IonText>
+            <IonCardContent>
+                {item.condition}
+            </IonCardContent>
+            {children}
+        </IonCard>
     );
 };

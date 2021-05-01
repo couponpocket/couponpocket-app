@@ -45,11 +45,11 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
     "serve": "ionic serve",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "sync": "npx cap sync",
+    "s+b": "npm run build && npm run sync"
   },
   "eslintConfig": {
     "extends": [

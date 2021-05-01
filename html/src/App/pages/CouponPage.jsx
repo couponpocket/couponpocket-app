@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import useStorage from "../hooks/useStorage";
+import useStorage from "../../hooks/useStorage";
 
 import AppPage from "../components/AppPage";
 import { CouponList } from "../components/CardList";

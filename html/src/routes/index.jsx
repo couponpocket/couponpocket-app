@@ -2,11 +2,11 @@ import React from "react";
 import { IonReactRouter } from "@ionic/react-router";
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
 import { Redirect, Route } from "react-router-dom";
-import CouponPage from "../pages/CouponPage";
-import CouponCategoryPage from "../pages/CouponCategoryPage";
+import CouponPage from "../App/pages/CouponPage";
+import CouponCategoryPage from "../App/pages/CouponCategoryPage";
 import { albumsOutline, barcodeOutline, cog } from "ionicons/icons";
-import CardsPage from "../pages/CardsPage";
-import SettingsPage from "../pages/SettingsPage";
+import CardsPage from "../App/pages/CardsPage";
+import SettingsPage from "../App/pages/SettingsPage";
 
 const Tabs = () => {
     const tabs = [

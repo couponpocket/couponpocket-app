@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+
+import App from './App';
+
+import "@capacitor/core";
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 ReactDOM.render(

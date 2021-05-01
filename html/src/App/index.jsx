@@ -1,7 +1,7 @@
 import React from "react";
 import { IonApp } from '@ionic/react';
 
-import Routes from "./routes";
+import Routes from "../routes";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

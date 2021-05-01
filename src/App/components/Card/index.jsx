@@ -1,7 +1,7 @@
 import React from "react";
 import { IonImg, IonCol, IonText, IonCard, IonCardContent } from "@ionic/react";
-import "./CouponCategoryCard.scss";
-import "./CouponCard.scss";
+import "./CouponCategoryCard.css";
+import "./CouponCard.css";
 
 export const CouponCategoryCard = ({item, history, ...htmlProps}) => {
     const handleClick = (id) => {

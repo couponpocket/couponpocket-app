@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import AppPage from "../components/AppPage";
+
+import useStorage from "../../hooks/useStorage";
+
 import { IonRefresher, IonRefresherContent } from "@ionic/react";
 import { Toast } from "@capacitor/toast";
-import { getCouponCategories } from "../services";
-import useStorage from "../hooks/useStorage";
+
+import AppPage from "../components/AppPage";
+import { getCouponCategories } from "../../services";
 import { CouponsCategoryList } from "../components/CardList";
 
 const CouponCategoryPage = ({name, history}) => {

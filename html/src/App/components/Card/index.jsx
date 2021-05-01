@@ -14,7 +14,7 @@ export const CouponCategoryCard = ({item, history, ...htmlProps}) => {
                  className={"coupon-category-card"}
                  style={{backgroundColor: item.color}}
                  {...htmlProps}>
-                <IonImg className="coupon-category-card-img" src={item.logo} alt={"Logo von " + item.name}/>
+                {item.name}
             </div>
         </IonCol>
     );
@@ -30,7 +30,7 @@ export const CouponCard = ({item, setShowCouponModal = null, children = null, sh
     };
 
     return (
-        <IonCard onClick={onCouponClick} className={"coupon-card"}>
+        <div onClick={onCouponClick}>
             <IonText color="primary">
                 <h2>{item.points} °P</h2>
             </IonText>
@@ -38,6 +38,6 @@ export const CouponCard = ({item, setShowCouponModal = null, children = null, sh
                 {item.condition}
             </IonCardContent>
             {children}
-        </IonCard>
+        </div>
     );
 };

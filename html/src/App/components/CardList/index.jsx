@@ -1,5 +1,5 @@
 import React from "react";
-import { IonGrid, IonRow } from "@ionic/react";
+import { IonGrid, IonRow, IonList } from "@ionic/react";
 import { CouponCategoryCard } from "../Card";
 import Coupon from "../Coupon";
 
@@ -27,12 +27,10 @@ export const CouponList = ({coupons}) => {
     const router = document.querySelector('ion-router-outlet');
 
     return (
-        <IonGrid>
-            <IonRow className="coupons-list">
-                {coupons.map((item, index) => (
-                    <Coupon key={index} item={item} router={router}/>
-                ))}
-            </IonRow>
-        </IonGrid>
+        <IonList className="coupons-list">
+            {coupons.map((item, index) => (
+                <Coupon key={index} item={item} router={router}/>
+            ))}
+        </IonList>
     );
 };

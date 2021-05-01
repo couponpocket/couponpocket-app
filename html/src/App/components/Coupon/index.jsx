@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/react";
+import { IonButton, IonCol, IonGrid, IonIcon, IonRow, IonItem } from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 import AppModal from "../AppModal";
 import { CouponCard } from "../Card";
@@ -11,9 +11,9 @@ const Coupon = ({item, router}) => {
 
     return (
         <>
-            <IonCol offset={1} size={10} offsetMd={0} sizeMd={6} sizeLg={4} sizeXl={3}>
+            <IonItem>
                 <CouponCard item={item} setShowCouponModal={setShowCouponModal}/>
-            </IonCol>
+            </IonItem>
             <AppModal
                 isOpen={showCouponModal}
                 onDidDismiss={() => setShowCouponModal(false)}

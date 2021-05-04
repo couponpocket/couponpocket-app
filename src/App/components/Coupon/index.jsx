@@ -1,24 +1,38 @@
 import React, { useState } from "react";
-import { IonButton, IonCol, IonGrid, IonIcon, IonRow, IonItem } from "@ionic/react";
+import {
+    IonButton,
+    IonCol,
+    IonGrid,
+    IonIcon,
+    IonRow,
+    IonItem,
+    IonItemSliding,
+    IonItemOptions,
+    IonItemOption
+} from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 import AppModal from "../AppModal";
-import { CouponCard } from "../Card";
+import CouponCard from "../Card/CouponCard";
 import Barcode from "react-barcode";
 
-
-const Coupon = ({item, router}) => {
+const Coupon = ({item, ionRouterOutlet}) => {
     const [showCouponModal, setShowCouponModal] = useState(false);
 
     return (
         <>
-            <IonItem>
-                <CouponCard item={item} setShowCouponModal={setShowCouponModal}/>
-            </IonItem>
+            <IonItemSliding>
+                <IonItem>
+                    <CouponCard item={item} setShowCouponModal={setShowCouponModal}/>
+                </IonItem>
+                <IonItemOptions side="end">
+                    <IonItemOption onClick={() => {}}>Merken</IonItemOption>
+                </IonItemOptions>
+            </IonItemSliding>
             <AppModal
                 isOpen={showCouponModal}
                 onDidDismiss={() => setShowCouponModal(false)}
                 swipeToClose={true}
-                presentingElement={router}
+                presentingElement={ionRouterOutlet.current}
                 cssClass="coupon-modal"
                 name="Details zum Coupon"
                 buttons={{

@@ -1,48 +1,12 @@
 import React, { useEffect } from "react";
-
-import useStorage from "../../hooks/useStorage";
-
+import { connect } from "react-redux";
 import { IonRefresher, IonRefresherContent } from "@ionic/react";
-import { Toast } from "@capacitor/toast";
 
 import AppPage from "../components/AppPage";
-import { getCouponCategories } from "../../services";
-import { CouponsCategoryList } from "../components/CardList";
+import CouponsCategoryList from "../components/CardList/CouponsCategoryList";
+import { syncCoupons } from "../../store/actions/coupons.actions";
 
-const CouponCategoryPage = ({name, history}) => {
-    const [coupons, setCoupons] = useStorage('coupons');
-
-    const syncCoupons = async (callback = null) => {
-        try {
-            const result = await getCouponCategories();
-
-            const cacheInvalid = new Date();
-            cacheInvalid.setDate(cacheInvalid.getDate() + 1);
-
-            await setCoupons({
-                cacheInvalid: cacheInvalid.getTime(),
-                data: result.data
-            });
-        } catch (exception) {
-            if (exception.name === 'NetworkError') {
-                await Toast.show({text: exception.message, position: 'top'});
-                console.log(exception.message);
-            }
-        } finally {
-            if (callback) {
-                callback();
-            }
-        }
-    }
-
-    useEffect(() => {
-        if (coupons === undefined) return null;
-
-        if (coupons === null || coupons.cacheInvalid < Date.now()) {
-            syncCoupons();
-        }
-    }, [coupons]);
-
+const CouponCategoryPage = ({name, history, coupons, syncCoupons}) => {
     return (
         <AppPage name={name} className="coupons">
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(() => event.detail.complete())}>
@@ -54,4 +18,12 @@ const CouponCategoryPage = ({name, history}) => {
     );
 };
 
-export default CouponCategoryPage;
+const mapStateToProps = state => ({
+    coupons: state.coupons
+});
+
+const mapDispatchToProps = ({
+    syncCoupons
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CouponCategoryPage);

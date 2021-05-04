@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IonApp } from '@ionic/react';
+import { Provider } from "react-redux";
 
 import Routes from "../routes";
+
+import store from "../store";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,11 +24,29 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { loadCoupons, syncCoupons } from "../store/actions/coupons.actions";
 
-const App = () => (
-    <IonApp>
-        <Routes/>
-    </IonApp>
-);
+const loadInitialValues = async () => {
+    /* set coupons */
+    await loadCoupons(store);
+
+    if (!store.getState().coupons.data || store.getState().coupons.cacheInvalid < Date.now()) {
+        await store.dispatch(await syncCoupons());
+    }
+};
+
+const App = () => {
+    useEffect(() => {
+        loadInitialValues();
+    }, [])
+
+    return (
+        <IonApp>
+            <Provider store={store}>
+                <Routes/>
+            </Provider>
+        </IonApp>
+    )
+};
 
 export default App;

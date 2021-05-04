@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IonReactRouter } from "@ionic/react-router";
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
 import { Redirect, Route } from "react-router-dom";
@@ -54,14 +54,19 @@ const Tabs = () => {
     );
 };
 
-const Routes = () => (
-    <IonReactRouter>
-        <IonRouterOutlet>
-            <Redirect exact={true} path="/" to="/tabs/coupons"/>
-            <Route path="/tabs" component={Tabs}/>
-            <Route path="/coupons/:id" component={CouponPage} exact={true}/>
-        </IonRouterOutlet>
-    </IonReactRouter>
-);
+const Routes = () => {
+    const ionRouterOutlet = useRef();
+
+    return (
+        <IonReactRouter>
+            <IonRouterOutlet ref={ionRouterOutlet}>
+                <Redirect exact={true} path="/" to="/tabs/coupons"/>
+                <Route path="/tabs" component={Tabs}/>
+                <Route path="/coupons/:id" exact={true}
+                       render={props => <CouponPage ionRouterOutlet={ionRouterOutlet} {...props} />}/>
+            </IonRouterOutlet>
+        </IonReactRouter>
+    )
+};
 
 export default Routes;

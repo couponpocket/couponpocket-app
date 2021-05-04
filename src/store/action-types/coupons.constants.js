@@ -1,0 +1,1 @@
+export const COUPONS_SET = 'COUPONS_SET';

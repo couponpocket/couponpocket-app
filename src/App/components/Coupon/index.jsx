@@ -11,9 +11,9 @@ import {
     IonCardContent,
     IonCardHeader,
     IonLabel,
-    IonText
+    IonText, IonGrid, IonRow, IonCol
 } from "@ionic/react";
-import { closeOutline } from "ionicons/icons";
+import { closeOutline, add } from "ionicons/icons";
 import AppModal from "../AppModal";
 import Barcode from "react-barcode";
 import { format } from "date-fns";
@@ -28,6 +28,10 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
     const onCouponClick = () => {
         setShowCouponModal(true);
     };
+
+    const addToWatchlist = () => {
+        setShowCouponModal(false);
+    }
 
     return (
         <>
@@ -86,6 +90,16 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
                         </div>
                     </IonCardContent>
                 </IonCard>
+
+                <IonGrid>
+                    <IonRow>
+                        <IonCol>
+                            <IonButton fill="solid" expand="block" onClick={addToWatchlist}>
+                                <IonIcon icon={add} /> Zur Merkliste hinzufügen
+                            </IonButton>
+                        </IonCol>
+                    </IonRow>
+                </IonGrid>
             </AppModal>
         </>
     );

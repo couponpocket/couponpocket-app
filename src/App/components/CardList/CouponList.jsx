@@ -4,6 +4,7 @@ import Coupon from "../Coupon";
 
 const CouponList = ({coupons, partner, ionRouterOutlet}) => {
 
+    /* group coupons */
     coupons = coupons.reduce((rv, x) => {
         rv[x.condition] = [...rv[x.condition] || [], x];
         return rv;

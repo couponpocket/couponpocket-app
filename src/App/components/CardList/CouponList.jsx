@@ -1,5 +1,5 @@
-import React  from "react";
-import { IonList, IonListHeader, IonLabel } from "@ionic/react";
+import React from "react";
+import { IonList, IonItemGroup, IonListHeader, IonLabel } from "@ionic/react";
 import Coupon from "../Coupon";
 
 const CouponList = ({coupons, ionRouterOutlet}) => {
@@ -11,14 +11,18 @@ const CouponList = ({coupons, ionRouterOutlet}) => {
 
     return (
         <IonList className="coupons-list">
-            {Object.entries(coupons).map(([key, value]) => [
-                <IonListHeader>
-                    <IonLabel>{key}</IonLabel>
-                </IonListHeader>,
-                value.map((item, index) => (
-                    <Coupon key={index} item={item} ionRouterOutlet={ionRouterOutlet}/>
-                ))
-            ])}
+            {Object.entries(coupons).map(([key, value]) => (
+                <IonItemGroup>
+                    <IonListHeader>
+                        <IonLabel>{key}</IonLabel>
+                    </IonListHeader>
+                    {
+                        value.map((item, index) => (
+                            <Coupon key={index} item={item} partner={partner} ionRouterOutlet={ionRouterOutlet}/>
+                        ))
+                    }
+                </IonItemGroup>
+            ))}
         </IonList>
     );
 };

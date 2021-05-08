@@ -1,0 +1,69 @@
+.coupon-points {
+    display: block;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.coupon-condition {
+    display: block;
+    font-size: 16px;
+}
+
+.coupon-valid-till {
+    font-size: 16px;
+}
+
+/** COUPON CARD */
+.coupon-card {
+    --ion-card-color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+    .coupon-card {
+        --ion-card-color: #FFFFFF;
+    }
+}
+
+/* CARD HEADER */
+.coupon-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.coupon-card-header-points {
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 22px;
+}
+
+.coupon-card-header-partner {
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* CARD CONTENT */
+.coupon-card-details {
+    margin: 15px 0;
+}
+
+.coupon-card-val {
+    margin: 15px 0;
+}
+
+.coupon-card-barcode {
+     width: 100%;
+     background: white;
+     border-radius: 5px;
+     margin-top: 10px;
+}
+
+.coupon-card-barcode svg {
+    width: 100%;
+}

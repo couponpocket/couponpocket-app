@@ -2,7 +2,7 @@ import React from "react";
 import { IonList, IonItemGroup, IonListHeader, IonLabel } from "@ionic/react";
 import Coupon from "../Coupon";
 
-const CouponList = ({coupons, ionRouterOutlet}) => {
+const CouponList = ({coupons, partner, ionRouterOutlet}) => {
 
     coupons = coupons.reduce((rv, x) => {
         rv[x.condition] = [...rv[x.condition] || [], x];

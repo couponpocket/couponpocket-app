@@ -15,13 +15,19 @@ const CouponPage = ({coupons, ionRouterOutlet, syncCoupons, ...props}) => {
 
     if (list === undefined) return <NotFoundPage/>;
 
+    const partner = {
+        name: list.name,
+        color_background: list.color_background,
+        color_foreground: list.color_foreground
+    };
+
     return (
         <AppPage name={list.name} className="coupons" collapse={false} buttons={<AppBackButton text="Coupons"/>}>
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(() => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>
 
-            <CouponList coupons={list.coupons} ionRouterOutlet={ionRouterOutlet}/>
+            <CouponList coupons={list.coupons} partner={partner} ionRouterOutlet={ionRouterOutlet}/>
         </AppPage>
     );
 };

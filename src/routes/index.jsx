@@ -4,7 +4,7 @@ import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } 
 import { Redirect, Route } from "react-router-dom";
 import CouponPage from "../App/pages/CouponPage";
 import CouponCategoryPage from "../App/pages/CouponCategoryPage";
-import { albumsOutline, barcodeOutline, cog } from "ionicons/icons";
+import { albumsOutline, albumsSharp, barcodeOutline, barcodeSharp, cog, cogSharp } from "ionicons/icons";
 import CardsPage from "../App/pages/CardsPage";
 import SettingsPage from "../App/pages/SettingsPage";
 
@@ -13,21 +13,24 @@ const Tabs = () => {
         {
             key: 'coupons',
             path: '/tabs/coupons',
-            icon: barcodeOutline,
+            iconIos: barcodeOutline,
+            iconMd: barcodeSharp,
             label: 'Coupons',
             component: CouponCategoryPage
         },
         {
             key: 'cards',
             path: '/tabs/cards',
-            icon: albumsOutline,
+            iconIos: albumsOutline,
+            iconMd: albumsSharp,
             label: 'Karten',
             component: CardsPage
         },
         {
             key: 'settings',
             path: '/tabs/settings',
-            icon: cog,
+            iconIos: cog,
+            iconMd: cogSharp,
             label: 'Einstellungen',
             component: SettingsPage
         }
@@ -43,9 +46,9 @@ const Tabs = () => {
                 )}
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
-                {tabs.map(({key, path, icon, label}) =>
+                {tabs.map(({key, path, iconIos, iconMd, label}) =>
                     <IonTabButton key={key} tab={key} href={path}>
-                        <IonIcon icon={icon}/>
+                        <IonIcon ios={iconIos} md={iconMd}/>
                         <IonLabel>{label}</IonLabel>
                     </IonTabButton>
                 )}

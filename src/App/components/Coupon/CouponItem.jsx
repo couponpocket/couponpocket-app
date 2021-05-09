@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
+import { connect } from "react-redux";
+
 import {
     IonButton,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
     IonCol,
     IonGrid,
     IonIcon,
@@ -16,26 +15,23 @@ import {
     IonRow,
     IonText
 } from "@ionic/react";
+import { add, closeOutline, remove } from "ionicons/icons";
 
 import { Toast } from "@capacitor/toast";
 
-import { add, remove, closeOutline } from "ionicons/icons";
 import AppModal from "../AppModal";
-import Barcode from "react-barcode";
-import { format } from "date-fns";
-import { de } from "date-fns/locale";
-import "./Coupon.css";
-import { connect } from "react-redux";
+import Coupon from "./Coupon";
 import { addCouponToWatchlist, removeCouponFromWatchlist } from "../../../store/actions";
 
-const Coupon = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatchlist, removeCouponFromWatchlist}) => {
+import "./Coupon.css";
+import { formatDate } from "../../../helpers";
+
+const CouponItem = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatchlist, removeCouponFromWatchlist}) => {
     /**
      * @type {React.MutableRefObject<undefined | HTMLIonItemSlidingElement>}
      */
     const ionItemSliding = useRef();
     const [showCouponModal, setShowCouponModal] = useState(false);
-
-    const formatDate = (value) => format(new Date(value), 'P', {locale: de});
 
     const onCouponClick = () => {
         setShowCouponModal(true);
@@ -50,7 +46,8 @@ const Coupon = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatchlist
     }
 
     const prepareCouponItem = (item) => ({
-        ...item
+        ...item,
+        partner
     });
 
     const removeFromWatchlist = async (event) => {
@@ -132,32 +129,7 @@ const Coupon = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatchlist
                     </IonButton>
                 }}
             >
-                <IonCard className="coupon-card">
-                    <IonCardHeader className="coupon-card-header" style={{
-                        backgroundColor: partner.color_background,
-                        color: partner.color_foreground
-                    }}>
-                        <IonText className="coupon-card-header-points">
-                            {item.points} °P
-                        </IonText>
-                        <IonText className="coupon-card-header-partner">
-                            {partner.name}
-                        </IonText>
-                    </IonCardHeader>
-                    <IonCardContent>
-                        <div className="coupon-card-details" style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <div className="coupon-condition">
-                                {item.condition}
-                            </div>
-                            <div className="coupon-valid-till">
-                                Bis {formatDate(item.valid_till)}
-                            </div>
-                        </div>
-                        <div className="coupon-card-barcode">
-                            <Barcode value={item.ean} renderer="svg"/>
-                        </div>
-                    </IonCardContent>
-                </IonCard>
+                <Coupon item={item} partner={partner} />
 
                 <IonGrid>
                     <IonRow>
@@ -188,4 +160,4 @@ const mapDispatchToProps = ({
     removeCouponFromWatchlist
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Coupon);
+export default connect(mapStateToProps, mapDispatchToProps)(CouponItem);

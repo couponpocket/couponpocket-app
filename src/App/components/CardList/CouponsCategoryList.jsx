@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IonGrid, IonRow } from "@ionic/react";
+import { IonCol, IonGrid, IonRow } from "@ionic/react";
 import CouponCategoryCard from "../Card/CouponCategoryCard";
 
 const CouponsCategoryList = ({coupons, history}) => {
@@ -12,6 +12,11 @@ const CouponsCategoryList = ({coupons, history}) => {
                 {Array.from(coupons.data).map((item, index) => (
                     <CouponCategoryCard history={history} key={index} item={item}/>
                 ))}
+            </IonRow>
+            <IonRow>
+                <IonCol>
+                    <p>Alle Coupons werden von Hedis Couponlist bereitsgestellt.</p>
+                </IonCol>
             </IonRow>
         </IonGrid>
     );

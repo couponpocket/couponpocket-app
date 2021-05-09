@@ -1,0 +1,9 @@
+.watchlist-slide-list {
+    width: 100%;
+    height: calc(100% - 70px);
+    padding-bottom: 40px;
+}
+
+.watchlist-slide .coupon-card {
+    width: 100%;
+}

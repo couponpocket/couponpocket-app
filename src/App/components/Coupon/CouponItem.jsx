@@ -104,7 +104,7 @@ const CouponItem = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatch
                 <IonItemOptions side="end" onIonSwipe={!watchlistContains(item) ? addToWatchlist : removeFromWatchlist}>
                     {
                         !watchlistContains(item) ?
-                            <IonItemOption color="primary" expandable={true} onClick={addToWatchlist}>
+                            <IonItemOption color="success" expandable={true} onClick={addToWatchlist}>
                                 <IonIcon icon={add} slot="top"/>
                                 Zur Merkliste hinzufügen
                             </IonItemOption> :
@@ -136,7 +136,7 @@ const CouponItem = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatch
                         <IonCol>
                             {
                                 !watchlistContains(item) ?
-                                    <IonButton fill="solid" expand="block" onClick={addToWatchlist}>
+                                    <IonButton color="success" fill="solid" expand="block" onClick={addToWatchlist}>
                                         <IonIcon icon={add}/> Zur Merkliste hinzufügen
                                     </IonButton> :
                                     <IonButton color="danger" fill="solid" expand="block" onClick={removeFromWatchlist}>

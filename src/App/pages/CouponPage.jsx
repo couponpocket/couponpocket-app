@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { IonRefresher, IonRefresherContent } from "@ionic/react";
+import { IonButton, IonIcon, IonRefresher, IonRefresherContent } from "@ionic/react";
 
 import { syncCoupons } from "../../store/actions";
 
@@ -10,8 +10,11 @@ import WatchlistModal from "../components/Watchlist";
 import CouponList from "../components/CardList/CouponList";
 import NotFoundPage from "./NotFoundPage";
 import AppBackButton from "../components/AppBackButton";
+import { bagOutline, bagSharp } from "ionicons/icons";
 
 const CouponPage = ({coupons, ionRouterOutlet, syncCoupons, ...props}) => {
+    const [showWatchlistModal, setShowWatchlistModal] = useState(false);
+
     if (!coupons.data) return null;
 
     const list = coupons.data.find((item) => item.id === parseInt(props.match.params.id));
@@ -25,14 +28,28 @@ const CouponPage = ({coupons, ionRouterOutlet, syncCoupons, ...props}) => {
         color_foreground: list.color_foreground
     };
 
+    const toolbarButtonRight = (
+        <IonButton onClick={() => setShowWatchlistModal(true)}>
+            <IonIcon slot="icon-only" ios={bagOutline} md={bagSharp}/>
+        </IonButton>
+    );
+
     return (
         <AppPage name={list.name} className="coupons" collapse={false}
-                 buttons={{start: <AppBackButton text="Coupons"/>, end: <WatchlistModal currentPartner={partner} ionRouterOutlet={ionRouterOutlet}/>}}>
+                 buttons={{
+                     start: <AppBackButton text="Coupons"/>,
+                     end: toolbarButtonRight
+                 }}>
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(() => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>
 
             <CouponList coupons={list.coupons} partner={partner} ionRouterOutlet={ionRouterOutlet}/>
+
+            <WatchlistModal currentPartner={partner}
+                            showWatchlistModal={showWatchlistModal}
+                            setShowWatchlistModal={setShowWatchlistModal}
+                            ionRouterOutlet={ionRouterOutlet}/>
         </AppPage>
     );
 };

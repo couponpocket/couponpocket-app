@@ -1,11 +1,14 @@
 {
 	"appId": "de.couponpocket.app",
 	"appName": "Coupon Pocket",
-	"bundledWebRuntime": false,
 	"webDir": "build",
+	"bundledWebRuntime": false,
 	"plugins": {
 		"SplashScreen": {
 			"launchShowDuration": 0
+		},
+		"Keyboard": {
+			"resize": "native"
 		}
 	},
 	"server": {

@@ -11,8 +11,8 @@ const CouponList = ({coupons, partner, ionRouterOutlet}) => {
 
     return (
         <IonList className="coupons-list">
-            {Object.entries(coupons).map(([key, value]) => (
-                <IonItemGroup>
+            {Object.entries(coupons).map(([key, value], index) => (
+                <IonItemGroup key={index}>
                     <IonListHeader>
                         <IonLabel>{key}</IonLabel>
                     </IonListHeader>

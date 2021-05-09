@@ -4,7 +4,7 @@ import { IonRefresher, IonRefresherContent } from "@ionic/react";
 
 import AppPage from "../components/AppPage";
 import CouponsCategoryList from "../components/CardList/CouponsCategoryList";
-import { syncCoupons } from "../../store/actions/coupons.actions";
+import { syncCoupons } from "../../store/actions";
 
 const CouponCategoryPage = ({name, history, coupons, syncCoupons}) => {
     return (

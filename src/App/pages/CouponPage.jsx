@@ -6,7 +6,7 @@ import CouponList from "../components/CardList/CouponList";
 import NotFoundPage from "./NotFoundPage";
 import AppBackButton from "../components/AppBackButton";
 import { IonRefresher, IonRefresherContent } from "@ionic/react";
-import { syncCoupons } from "../../store/actions/coupons.actions";
+import { syncCoupons } from "../../store/actions";
 
 const CouponPage = ({coupons, ionRouterOutlet, syncCoupons, ...props}) => {
     if (!coupons.data) return null;

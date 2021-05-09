@@ -24,11 +24,13 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { loadCoupons, syncCoupons } from "../store/actions/coupons.actions";
+import { loadCoupons, syncCoupons, loadWatchlist } from "../store/actions";
 
 const loadInitialValues = async () => {
     /* set coupons */
     await loadCoupons(store);
+
+    await loadWatchlist(store);
 
     if (!store.getState().coupons.data || store.getState().coupons.cacheInvalid < Date.now()) {
         await store.dispatch(await syncCoupons());

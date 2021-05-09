@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 
 /* Reducers */
-import coupons from './coupons.reducer';
+import coupons from "./coupons.reducer";
+import watchlist from "./watchlist.reducer";
 
 const RootReducer = combineReducers({
-    coupons
+    coupons,
+    watchlist
 });
 
 export default RootReducer;

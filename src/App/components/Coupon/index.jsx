@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     IonButton,
-    IonIcon,
-    IonItem,
-    IonItemSliding,
-    IonItemOptions,
-    IonItemOption,
-    IonNote,
     IonCard,
     IonCardContent,
     IonCardHeader,
+    IonCol,
+    IonGrid,
+    IonIcon,
+    IonItem,
+    IonItemOption,
+    IonItemOptions,
+    IonItemSliding,
     IonLabel,
-    IonText, IonGrid, IonRow, IonCol
+    IonNote,
+    IonRow,
+    IonText
 } from "@ionic/react";
-import { closeOutline, add } from "ionicons/icons";
+
+import { Toast } from "@capacitor/toast";
+
+import { add, remove, closeOutline } from "ionicons/icons";
 import AppModal from "../AppModal";
 import Barcode from "react-barcode";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import "./Coupon.css";
+import { connect } from "react-redux";
+import { addCouponToWatchlist, removeCouponFromWatchlist } from "../../../store/actions";
 
-const Coupon = ({item, partner, ionRouterOutlet}) => {
+const Coupon = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatchlist, removeCouponFromWatchlist}) => {
+    /**
+     * @type {React.MutableRefObject<undefined | HTMLIonItemSlidingElement>}
+     */
+    const ionItemSliding = useRef();
     const [showCouponModal, setShowCouponModal] = useState(false);
 
     const formatDate = (value) => format(new Date(value), 'P', {locale: de});
@@ -29,15 +41,61 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
         setShowCouponModal(true);
     };
 
-    const addToWatchlist = () => {
-        setShowCouponModal(false);
+    const handleWatchlistEvent = async (event) => {
+        if (!event.target.closest('.coupon-modal')) {
+            await ionItemSliding.current?.close();
+        } else {
+            setShowCouponModal(false);
+        }
     }
+
+    const prepareCouponItem = (item) => ({
+        ...item
+    });
+
+    const removeFromWatchlist = async (event) => {
+        await handleWatchlistEvent(event);
+
+        try {
+            await setTimeout(() => {
+                removeCouponFromWatchlist(prepareCouponItem(item));
+            }, 500);
+            await Toast.show({
+                text: 'Der Coupon wurde von der Merkliste entfernt!'
+            })
+        } catch (e) {
+            console.log(e);
+            await Toast.show({
+                text: 'Es ist ein Fehler aufgetreten. Bitte versuche es Später erneut!'
+            })
+        }
+    }
+
+    const addToWatchlist = async (event) => {
+        await handleWatchlistEvent(event);
+
+        try {
+            await setTimeout(() => {
+                addCouponToWatchlist(prepareCouponItem(item));
+            }, 500);
+            await Toast.show({
+                text: 'Der Coupon wurde zur Merkliste hinzugefügt!'
+            })
+        } catch (e) {
+            console.log(e);
+            await Toast.show({
+                text: 'Es ist ein Fehler aufgetreten. Bitte versuche es Später erneut!'
+            })
+        }
+    }
+
+    const watchlistContains = (item) => watchlist.find((watchlistItem) => watchlistItem.ean === item.ean);
 
     return (
         <>
-            <IonItemSliding>
-                <IonItem>
-                    <IonLabel className="ion-text-wrap" onClick={onCouponClick}>
+            <IonItemSliding ref={ionItemSliding}>
+                <IonItem button onClick={onCouponClick}>
+                    <IonLabel className="ion-text-wrap">
                         <IonText color="primary" className="coupon-points">
                             {item.points} °P
                         </IonText>
@@ -46,8 +104,18 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
                         Bis {formatDate(item.valid_till)}
                     </IonNote>
                 </IonItem>
-                <IonItemOptions side="end">
-                    <IonItemOption onClick={() => {}}>Merken</IonItemOption>
+                <IonItemOptions side="end" onIonSwipe={!watchlistContains(item) ? addToWatchlist : removeFromWatchlist}>
+                    {
+                        !watchlistContains(item) ?
+                            <IonItemOption color="primary" expandable={true} onClick={addToWatchlist}>
+                                <IonIcon icon={add} slot="top"/>
+                                Zur Merkliste hinzufügen
+                            </IonItemOption> :
+                            <IonItemOption color="danger" expandable={true} onClick={removeFromWatchlist}>
+                                <IonIcon icon={remove} slot="top"/>
+                                Von Merkliste entfernen
+                            </IonItemOption>
+                    }
                 </IonItemOptions>
             </IonItemSliding>
 
@@ -94,9 +162,15 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
                 <IonGrid>
                     <IonRow>
                         <IonCol>
-                            <IonButton fill="solid" expand="block" onClick={addToWatchlist}>
-                                <IonIcon icon={add} /> Zur Merkliste hinzufügen
-                            </IonButton>
+                            {
+                                !watchlistContains(item) ?
+                                    <IonButton fill="solid" expand="block" onClick={addToWatchlist}>
+                                        <IonIcon icon={add}/> Zur Merkliste hinzufügen
+                                    </IonButton> :
+                                    <IonButton color="danger" fill="solid" expand="block" onClick={removeFromWatchlist}>
+                                        <IonIcon icon={remove}/> Von Merkliste entfernen
+                                    </IonButton>
+                            }
                         </IonCol>
                     </IonRow>
                 </IonGrid>
@@ -105,4 +179,13 @@ const Coupon = ({item, partner, ionRouterOutlet}) => {
     );
 };
 
-export default Coupon;
+const mapStateToProps = (state) => ({
+    watchlist: state.watchlist
+});
+
+const mapDispatchToProps = ({
+    addCouponToWatchlist,
+    removeCouponFromWatchlist
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Coupon);

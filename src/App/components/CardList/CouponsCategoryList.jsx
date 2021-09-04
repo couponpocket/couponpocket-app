@@ -4,7 +4,7 @@ import { IonGrid, IonRow } from "@ionic/react";
 import CouponCategoryCard from "../Card/CouponCategoryCard";
 
 const CouponsCategoryList = ({coupons, history}) => {
-    if (!coupons.data) return null;
+    if (!coupons?.data) return null;
 
     return (
         <IonGrid>

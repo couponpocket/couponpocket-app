@@ -32,7 +32,7 @@ const loadInitialValues = async () => {
 
     await loadWatchlist(store);
 
-    if (!store.getState().coupons.data || store.getState().coupons.cacheInvalid < Date.now()) {
+    if (!store.getState()?.coupons?.data || store.getState()?.coupons?.cacheInvalid < Date.now()) {
         await store.dispatch(await syncCoupons());
     }
 };

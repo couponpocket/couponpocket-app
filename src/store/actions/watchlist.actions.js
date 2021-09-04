@@ -4,14 +4,14 @@ import { Storage } from '@capacitor/storage';
 export const loadWatchlist = async (store) => {
     const {value} = await Storage.get({key: WATCHLIST_STORAGE_KEY});
 
-    store.dispatch(dispatchSizeGuide(WATCHLIST_SET, value ? JSON.parse(value) : [], false));
+    store.dispatch(dispatchWatchlist(WATCHLIST_SET, value ? JSON.parse(value) : [], false));
 }
 
-export const addCouponToWatchlist = (item) => async (dispatch) => dispatch(dispatchSizeGuide(WATCHLIST_ADD, item));
+export const addCouponToWatchlist = (item) => async (dispatch) => dispatch(dispatchWatchlist(WATCHLIST_ADD, item));
 
-export const removeCouponFromWatchlist = (item) => async (dispatch) => dispatch(dispatchSizeGuide(WATCHLIST_REMOVE, item));
+export const removeCouponFromWatchlist = (item) => async (dispatch) => dispatch(dispatchWatchlist(WATCHLIST_REMOVE, item));
 
-const dispatchSizeGuide = (type, payload, persist = true) => ({
+const dispatchWatchlist = (type, payload, persist = true) => ({
     type,
     payload,
     persist

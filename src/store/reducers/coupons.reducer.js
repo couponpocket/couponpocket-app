@@ -1,4 +1,5 @@
-import { COUPONS_SET } from "../action-types";
+import { COUPONS_SET, COUPONS_STORAGE_KEY } from "../action-types";
+import { Storage } from "@capacitor/storage";
 
 const initialState = {
     cacheInvalid: 0,
@@ -6,17 +7,15 @@ const initialState = {
 };
 
 const coupons = (state = initialState, action) => {
-    const cacheInvalid = new Date();
-    cacheInvalid.setDate(cacheInvalid.getDate() + 1);
-
     switch (action.type) {
         case COUPONS_SET:
-            state = {
-                cacheInvalid: cacheInvalid.getTime(),
-                data: action.payload
-            };
+            state = action.payload;
             break;
         default:
+    }
+
+    if (action?.persist) {
+        Storage.set({key: COUPONS_STORAGE_KEY, value: JSON.stringify(state)}).then();
     }
 
     return state;

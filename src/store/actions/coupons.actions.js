@@ -1,12 +1,12 @@
 import { getCouponCategories } from "../../services";
 import { Toast } from "@capacitor/toast";
-import { COUPONS_SET } from "../action-types";
+import { COUPONS_SET, COUPONS_STORAGE_KEY } from "../action-types";
 import { Storage } from '@capacitor/storage';
 
 export const loadCoupons = async (store) => {
-    const {value} = await Storage.get({key: 'coupons'});
+    const {value} = await Storage.get({key: COUPONS_STORAGE_KEY});
 
-    store.dispatch(setCoupons(JSON.parse(value)));
+    store.dispatch(dispatchCoupons(COUPONS_SET, JSON.parse(value), false));
 }
 
 export const syncCoupons = (callback = null) => async (dispatch) => {
@@ -14,9 +14,13 @@ export const syncCoupons = (callback = null) => async (dispatch) => {
         const result = await getCouponCategories();
         const {items} = result.data;
 
-        dispatch(setCoupons(items));
+        const cacheInvalid = new Date();
+        cacheInvalid.setDate(cacheInvalid.getDate() + 1);
 
-        await Storage.set({key: 'coupons', value: JSON.stringify(items)});
+        dispatch(dispatchCoupons(COUPONS_SET, {
+            cacheInvalid: cacheInvalid.getTime(),
+            data: items
+        }));
     } catch (exception) {
         if (exception.name === 'NetworkError') {
             await Toast.show({text: exception.message, position: 'top'});
@@ -29,7 +33,8 @@ export const syncCoupons = (callback = null) => async (dispatch) => {
     }
 }
 
-const setCoupons = (payload) => ({
-    type: COUPONS_SET,
-    payload: payload
+const dispatchCoupons = (type, payload, persist = true) => ({
+    type,
+    payload,
+    persist
 });

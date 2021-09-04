@@ -102,17 +102,17 @@ const CouponItem = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatch
                     </IonNote>
                 </IonItem>
                 <IonItemOptions side="end" onIonSwipe={!watchlistContains(item) ? addToWatchlist : removeFromWatchlist}>
-                    {
-                        !watchlistContains(item) ?
-                            <IonItemOption color="success" expandable={true} onClick={addToWatchlist}>
-                                <IonIcon icon={add} slot="top"/>
-                                Zur Merkliste hinzufügen
-                            </IonItemOption> :
-                            <IonItemOption color="danger" expandable={true} onClick={removeFromWatchlist}>
-                                <IonIcon icon={remove} slot="top"/>
-                                Von Merkliste entfernen
-                            </IonItemOption>
-                    }
+                    {!watchlistContains(item) ? (
+                        <IonItemOption color="success" expandable={true} onClick={addToWatchlist}>
+                            <IonIcon icon={add} slot="top"/>
+                            Zur Merkliste hinzufügen
+                        </IonItemOption>
+                    ) : (
+                        <IonItemOption color="danger" expandable={true} onClick={removeFromWatchlist}>
+                            <IonIcon icon={remove} slot="top"/>
+                            Von Merkliste entfernen
+                        </IonItemOption>
+                    )}
                 </IonItemOptions>
             </IonItemSliding>
 
@@ -124,25 +124,29 @@ const CouponItem = ({item, partner, ionRouterOutlet, watchlist, addCouponToWatch
                 cssClass="coupon-modal"
                 name="Details zum Coupon"
                 buttons={{
-                    end: <IonButton onClick={() => setShowCouponModal(false)}>
-                        <IonIcon icon={closeOutline}/>
-                    </IonButton>
+                    end: (
+                        <IonButton onClick={() => setShowCouponModal(false)}>
+                            <IonIcon icon={closeOutline}/>
+                        </IonButton>
+                    )
                 }}
             >
-                <Coupon item={item} partner={partner} />
+                <Coupon item={item} partner={partner}/>
 
                 <IonGrid>
                     <IonRow>
                         <IonCol>
-                            {
-                                !watchlistContains(item) ?
-                                    <IonButton color="success" fill="solid" expand="block" onClick={addToWatchlist}>
-                                        <IonIcon icon={add}/> Zur Merkliste hinzufügen
-                                    </IonButton> :
-                                    <IonButton color="danger" fill="solid" expand="block" onClick={removeFromWatchlist}>
-                                        <IonIcon icon={remove}/> Von Merkliste entfernen
-                                    </IonButton>
-                            }
+                            {!watchlistContains(item) ? (
+                                <IonButton color="success" fill="solid" expand="block" onClick={addToWatchlist}>
+                                    <IonIcon icon={add}/>
+                                    Zur Merkliste hinzufügen
+                                </IonButton>
+                            ) : (
+                                <IonButton color="danger" fill="solid" expand="block" onClick={removeFromWatchlist}>
+                                    <IonIcon icon={remove}/>
+                                    Von Merkliste entfernen
+                                </IonButton>
+                            )}
                         </IonCol>
                     </IonRow>
                 </IonGrid>

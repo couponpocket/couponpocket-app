@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { IonApp } from '@ionic/react';
 import { Provider } from "react-redux";
 
-import Routes from "../routes";
+import Navigator from "./components/Navigator";
 
 import store from "../store";
 
@@ -45,7 +45,7 @@ const App = () => {
     return (
         <IonApp>
             <Provider store={store}>
-                <Routes/>
+                <Navigator/>
             </Provider>
         </IonApp>
     )

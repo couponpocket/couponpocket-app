@@ -4,7 +4,7 @@ import "./CouponCategoryCard.css";
 
 const CouponCategoryCard = ({item, history, ...htmlProps}) => {
     const link = (id) => {
-        return '/coupons/' + id
+        return '/categories/' + id
     }
 
     return (

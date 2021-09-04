@@ -10,7 +10,7 @@ export const AppPage = ({children, name, buttons, collapse = true}) => {
             return null;
         }
 
-        if (!(buttons.start && buttons.end)) {
+        if (!buttons.start && !buttons.end) {
             setStart(buttons);
         } else {
             if (buttons.start) {

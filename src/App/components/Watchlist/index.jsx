@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
 import { IonButton, IonCol, IonGrid, IonIcon, IonRow, IonSlide, IonSlides } from "@ionic/react";
@@ -64,6 +64,4 @@ const mapStateToProps = state => ({
     watchlist: state.watchlist
 });
 
-const mapDispatchToProps = ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(WatchlistModal);
+export default connect(mapStateToProps)(WatchlistModal);

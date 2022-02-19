@@ -1,5 +1,5 @@
 import React from "react";
-import {IonApp} from '@ionic/react';
+import {IonApp, setupIonicReact} from '@ionic/react';
 import {Provider} from "react-redux";
 
 import Navigator from "./components/Navigator/Navigator";
@@ -35,6 +35,7 @@ const loadInitialValues = async () => {
 };
 
 loadInitialValues();
+setupIonicReact();
 
 const App = () => (
     <IonApp>

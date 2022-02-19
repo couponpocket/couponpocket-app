@@ -22,7 +22,7 @@ const Navigator: FC = () => {
                     {navigation.map(item => (
                         <Route exact={item.exact || false} key={item.key} path={item.path}
                                render={props => item.component ? (
-                                   <item.component router={routerRef.current} {...props} />
+                                   <item.component title={item?.meta?.name} router={routerRef.current} {...props} />
                                ) : null}
                         />
                     ))}

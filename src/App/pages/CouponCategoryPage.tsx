@@ -4,14 +4,13 @@ import {IonRefresher, IonRefresherContent} from "@ionic/react";
 import CouponsCategoryList from "../components/CouponCategory/CouponsCategoryList/CouponsCategoryList";
 import {syncCoupons} from "../../helpers/coupons";
 import NavigatorPage from "../components/Navigator/NavigatorPage";
+import {NavigatorProps} from "../components/Navigator/types";
 
-interface CouponCategoryPageProps {
-    name: string
-}
+type CouponCategoryPageProps = NavigatorProps;
 
-const CouponCategoryPage: FC<CouponCategoryPageProps> = ({name}) => {
+const CouponCategoryPage: FC<CouponCategoryPageProps> = ({title}) => {
     return (
-        <NavigatorPage title={name}>
+        <NavigatorPage title={title}>
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(() => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>

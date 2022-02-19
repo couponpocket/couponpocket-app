@@ -11,8 +11,7 @@ import {NavigatorProps} from "../components/Navigator/types";
 import {useAppSelector} from "../../store";
 import {syncCoupons} from "../../helpers/coupons";
 
-interface CouponPage extends NavigatorProps {
-}
+type CouponPage = NavigatorProps;
 
 const CouponPage: FC<CouponPage> = ({router, ...props}) => {
     const [, setShowWatchlistModal] = useState(false);
@@ -40,7 +39,7 @@ const CouponPage: FC<CouponPage> = ({router, ...props}) => {
                 <IonRefresherContent/>
             </IonRefresher>
 
-            <CouponList partner={partner} ionRouterOutlet={router}/>
+            <CouponList partner={partner}/>
         </NavigatorPage>
     );
 };

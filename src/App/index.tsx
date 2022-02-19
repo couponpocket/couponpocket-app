@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {IonApp} from '@ionic/react';
 import {Provider} from "react-redux";
 
@@ -26,18 +26,22 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import {syncCoupons} from "../helpers/coupons";
 
-const App = () => {
-    useEffect(() => {
+const loadInitialValues = async () => {
+    try {
         store.dispatch(syncCoupons());
-    }, []);
-
-    return (
-        <IonApp>
-            <Provider store={store}>
-                <Navigator/>
-            </Provider>
-        </IonApp>
-    )
+    } catch (e) {
+        console.log(e);
+    }
 };
+
+loadInitialValues();
+
+const App = () => (
+    <IonApp>
+        <Provider store={store}>
+            <Navigator/>
+        </Provider>
+    </IonApp>
+);
 
 export default App;

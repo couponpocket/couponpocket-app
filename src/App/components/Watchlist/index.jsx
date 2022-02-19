@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { connect } from "react-redux";
+import React, {useEffect, useRef} from "react";
+import {connect} from "react-redux";
 
-import { IonButton, IonCol, IonGrid, IonIcon, IonRow, IonSlide, IonSlides } from "@ionic/react";
-import { closeOutline } from "ionicons/icons";
+import {IonButton, IonCol, IonGrid, IonIcon, IonRow, IonSlide, IonSlides} from "@ionic/react";
+import {closeOutline} from "ionicons/icons";
 
-import AppModal from "../AppModal";
 import Coupon from "../Coupon/Coupon";
 
 import "./Watchlist.css";
+import NavigatorModal from "../Navigator/NavigatorModal";
 
 const WatchlistModal = ({ionRouterOutlet, showWatchlistModal, setShowWatchlistModal, currentPartner, watchlist}) => {
     /**
@@ -26,17 +26,16 @@ const WatchlistModal = ({ionRouterOutlet, showWatchlistModal, setShowWatchlistMo
     watchlist = watchlist.filter((item) => item.partner.id === currentPartner.id);
 
     return (
-        <AppModal isOpen={showWatchlistModal}
-                  onDidDismiss={() => setShowWatchlistModal(false)}
-                  swipeToClose={true}
-                  presentingElement={ionRouterOutlet.current}
-                  cssClass="watchlist-modal"
-                  name={'Merkliste für ' + currentPartner.name}
-                  buttons={{
-                      end: <IonButton onClick={() => setShowWatchlistModal(false)}>
-                          <IonIcon icon={closeOutline}/>
-                      </IonButton>
-                  }}>
+        <NavigatorModal showModal={showWatchlistModal}
+                        setShowModal={setShowWatchlistModal}
+                        router={ionRouterOutlet.current}
+                        modalClassName="watchlist-modal"
+                        title={'Merkliste für ' + currentPartner.name}
+                        buttons={{
+                            end: <IonButton onClick={() => setShowWatchlistModal(false)}>
+                                <IonIcon icon={closeOutline}/>
+                            </IonButton>
+                        }}>
             {
                 watchlist.length ?
                     <IonSlides ref={slider} className="watchlist-slide-list" pager={true}>
@@ -56,7 +55,7 @@ const WatchlistModal = ({ionRouterOutlet, showWatchlistModal, setShowWatchlistMo
                         </IonRow>
                     </IonGrid>
             }
-        </AppModal>
+        </NavigatorModal>
     );
 };
 

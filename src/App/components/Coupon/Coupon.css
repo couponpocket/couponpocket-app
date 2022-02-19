@@ -50,6 +50,8 @@
 
 /* CARD CONTENT */
 .coupon-card-details {
+    display: flex;
+    justify-content: space-between;
     margin: 15px 0;
 }
 

@@ -1,5 +1,0 @@
-export const WATCHLIST_STORAGE_KEY = 'APPWatchlist'
-
-export const WATCHLIST_SET = 'WATCHLIST_SET';
-export const WATCHLIST_ADD = 'WATCHLIST_ADD';
-export const WATCHLIST_REMOVE = 'WATCHLIST_REMOVE';

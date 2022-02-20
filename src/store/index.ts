@@ -2,9 +2,10 @@ import {configureStore} from '@reduxjs/toolkit'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import {persistCombineReducers, persistStore} from 'redux-persist';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
-import CapacitorStorage from 'redux-persist-capacitor-storage';
+import CapacitorStorage from 'redux-persist-capacitor';
 
 import couponReducer, {CouponsState} from './reducers/coupons';
+import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
 
 export interface AppState {
     coupons: CouponsState
@@ -16,9 +17,14 @@ const persistConfig = {
     stateReconciler: autoMergeLevel1
 };
 
-export const store = configureStore({
+const store = configureStore({
     reducer: persistCombineReducers<AppState>(persistConfig, {
         coupons: couponReducer
+    }),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
     })
 });
 
@@ -32,3 +38,5 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export const persistor = persistStore(store);
+
+export default store;

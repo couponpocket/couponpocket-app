@@ -6,22 +6,16 @@ import {CouponCategoryProperties} from "../../api/services/coupon-categories";
 export interface CouponsState {
     categories: CouponCategoryProperties[];
     coupons: CouponProperties[];
-    expires: number;
 }
 
-const initialState: CouponsState = {
+export const initialCouponState: CouponsState = {
     categories: [],
-    coupons: [],
-    expires: 0
+    coupons: []
 }
 
-export default createReducer(initialState, builder => {
+export default createReducer(initialCouponState, builder => {
     builder.addCase(setCoupons, (state, action) => {
-        const expires = new Date();
-        expires.setDate(expires.getDate() + 1);
-
         state.categories = action.payload.categories;
         state.coupons = action.payload.coupons;
-        state.expires = expires.getDate();
     })
 })

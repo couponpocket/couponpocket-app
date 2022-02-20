@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 
 import Navigator from "./components/Navigator/Navigator";
 
-import {store} from "../store";
+import store, {persistor} from "../store";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,6 +25,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import {syncCoupons} from "../helpers/coupons";
+import {PersistGate} from "redux-persist/integration/react";
 
 const loadInitialValues = async () => {
     try {
@@ -40,7 +41,9 @@ setupIonicReact();
 const App = () => (
     <IonApp>
         <Provider store={store}>
-            <Navigator/>
+            <PersistGate loading={null} persistor={persistor}>
+                <Navigator/>
+            </PersistGate>
         </Provider>
     </IonApp>
 );

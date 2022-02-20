@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 
 import {
+    IonCheckbox,
     IonItem,
     IonLabel,
     IonNote,
@@ -12,12 +13,15 @@ import {CouponProperties} from "../../../../api/services/coupons";
 import {FormattedDate} from "react-intl";
 
 interface CouponItemProps {
-    item: CouponProperties
+    item: CouponProperties,
+    checked: boolean,
+    toggleItem: (ean: number) => void
 }
 
-const CouponItem: FC<CouponItemProps> = ({item}) => {
+const CouponItem: FC<CouponItemProps> = ({item, checked, toggleItem}) => {
     return (
         <IonItem>
+            <IonCheckbox slot="start" checked={checked} onIonChange={() => toggleItem(item.ean)}/>
             <IonLabel>
                 <IonText color="primary" className="coupon-points">
                     {item.points} °P

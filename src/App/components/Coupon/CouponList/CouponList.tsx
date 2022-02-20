@@ -5,15 +5,19 @@ import {useAppSelector} from "../../../../store";
 import {CouponCategoryProperties} from "../../../../api/services/coupon-categories";
 import {CouponProperties} from "../../../../api/services/coupons";
 
+import "./couponList.css";
+
 interface CouponListProps {
     partner: CouponCategoryProperties,
+    watchlist: number[],
+    toggleItem: (ean: number) => void
 }
 
 interface CouponGroupList {
     [x: string]: CouponProperties[]
 }
 
-const CouponList: FC<CouponListProps> = ({partner}) => {
+const CouponList: FC<CouponListProps> = ({partner, watchlist, toggleItem}) => {
     const coupons = useAppSelector(state => state.coupons.coupons.filter(item => item.coupon_category_id === partner.id));
 
     /* group coupons */
@@ -33,14 +37,14 @@ const CouponList: FC<CouponListProps> = ({partner}) => {
     }
 
     return (
-        <IonList className="coupons-list">
+        <IonList className="coupon-list">
             {Object.entries(sortedCoupons).map(([key, value], index) => (
                 <IonItemGroup key={index}>
                     <IonListHeader>
                         <IonLabel>{key}</IonLabel>
                     </IonListHeader>
                     {value.map((item, index) => (
-                        <CouponItem key={index} item={item}/>
+                        <CouponItem key={index} checked={watchlist.includes(item.ean)} toggleItem={toggleItem} item={item}/>
                     ))}
                 </IonItemGroup>
             ))}

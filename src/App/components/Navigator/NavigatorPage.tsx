@@ -1,7 +1,7 @@
-import React, { FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState } from 'react';
-import { IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
+import {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
+import {IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, isPlatform} from '@ionic/react';
 
-interface NavigatorPageProps extends PropsWithChildren<{
+type NavigatorPageProps = PropsWithChildren<{
     title?: ReactChild,
     buttons?: {
         start?: ReactElement,
@@ -13,8 +13,7 @@ interface NavigatorPageProps extends PropsWithChildren<{
         top?: ReactElement,
         bottom?: ReactElement
     } | ReactElement
-}> {
-}
+}>
 
 const NavigatorPage: FC<NavigatorPageProps> = ({
                                                    children,
@@ -67,7 +66,7 @@ const NavigatorPage: FC<NavigatorPageProps> = ({
 
     return (
         <IonPage className={className}>
-            <IonHeader translucent={true}>
+            <IonHeader collapse="fade" translucent={true}>
                 <IonToolbar>
                     {startButtons ? <IonButtons slot="start">{startButtons}</IonButtons> : null}
                     {endButtons ? <IonButtons slot="end">{endButtons}</IonButtons> : null}
@@ -75,7 +74,7 @@ const NavigatorPage: FC<NavigatorPageProps> = ({
                 </IonToolbar>
                 {topHeaderChildren ? <IonToolbar>{topHeaderChildren}</IonToolbar> : null}
             </IonHeader>
-            <IonContent>
+            <IonContent fullscreen={true}>
                 {collapse ? (
                     <IonHeader collapse="condense">
                         <IonToolbar>

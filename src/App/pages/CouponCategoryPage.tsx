@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {IonRefresher, IonRefresherContent} from "@ionic/react";
 
-import CouponsCategoryList from "../components/CouponCategory/CouponsCategoryList/CouponsCategoryList";
+import CouponCategoryList from "../components/CouponCategory/CouponCategoryList/CouponCategoryList";
 import {syncCoupons} from "../../helpers/coupons";
 import NavigatorPage from "../components/Navigator/NavigatorPage";
 import {NavigatorProps} from "../components/Navigator/types";
@@ -18,7 +18,7 @@ const CouponCategoryPage: FC<CouponCategoryPageProps> = ({title}) => {
                 <IonRefresherContent/>
             </IonRefresher>
 
-            <CouponsCategoryList/>
+            <CouponCategoryList/>
         </NavigatorPage>
     );
 };

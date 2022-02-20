@@ -4,7 +4,7 @@ import { IonGrid, IonRow } from "@ionic/react";
 import CouponCategory from "../CouponCategory";
 import {useAppSelector} from "../../../../store";
 
-const CouponsCategoryList = () => {
+const CouponCategoryList = () => {
     const categories = useAppSelector(state => state.coupons.categories);
 
     return (
@@ -18,4 +18,4 @@ const CouponsCategoryList = () => {
     );
 };
 
-export default CouponsCategoryList;
+export default CouponCategoryList;

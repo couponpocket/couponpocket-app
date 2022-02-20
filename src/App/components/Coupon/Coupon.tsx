@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import {useBarcode} from 'react-barcodes';
 import {IonCard, IonCardContent, IonCardHeader, IonText} from "@ionic/react";
-import {formatDate} from "../../../helpers";
 import {CouponProperties} from "../../../api/services/coupons";
 import {CouponCategoryProperties} from "../../../api/services/coupon-categories";
+import {FormattedDate} from "react-intl";
 
 interface CouponProps {
     item: CouponProperties,
@@ -37,7 +37,7 @@ const Coupon: FC<CouponProps> = ({item, partner}) => {
                         {item.condition}
                     </div>
                     <div className="coupon-valid-till">
-                        Bis {formatDate(item.valid_till)}
+                        Bis <FormattedDate value={item.valid_till} dateStyle="medium"/>
                     </div>
                 </div>
                 <div className="coupon-card-barcode">

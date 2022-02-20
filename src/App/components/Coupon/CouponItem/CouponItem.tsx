@@ -7,9 +7,9 @@ import {
     IonText
 } from "@ionic/react";
 
-import "../Coupon.css";
-import {formatDate} from "../../../../helpers";
+import "./CouponItem.css";
 import {CouponProperties} from "../../../../api/services/coupons";
+import {FormattedDate} from "react-intl";
 
 interface CouponItemProps {
     item: CouponProperties
@@ -17,14 +17,20 @@ interface CouponItemProps {
 
 const CouponItem: FC<CouponItemProps> = ({item}) => {
     return (
-        <IonItem button>
-            <IonLabel className="ion-text-wrap">
+        <IonItem>
+            <IonLabel>
                 <IonText color="primary" className="coupon-points">
                     {item.points} °P
                 </IonText>
+                <IonText className="coupon-condition">
+                    {item.condition}
+                </IonText>
+                <IonText className="coupon-ean">
+                    Code: {item.ean}
+                </IonText>
             </IonLabel>
             <IonNote className="coupon-valid-till">
-                Bis {formatDate(item.valid_till)}
+                Bis <FormattedDate value={item.valid_till} dateStyle="medium"/>
             </IonNote>
         </IonItem>
     );

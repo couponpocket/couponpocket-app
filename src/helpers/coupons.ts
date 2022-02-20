@@ -4,14 +4,14 @@ import {AppDispatch} from "../store";
 import {setCoupons} from "../store/actions/coupons";
 import {getCoupons} from "../api/services/coupons";
 
-export const syncCoupons = (callback?: () => any) => async (dispatch: AppDispatch) => {
+export const syncCoupons = async (dispatch: AppDispatch, callback?: () => any) => {
     try {
-        const categories = (await getCouponCategories()).data.items;
-        const coupons = (await getCoupons()).data.items;
+        const categories = await getCouponCategories();
+        const coupons = await getCoupons();
 
         dispatch(setCoupons({
-            categories,
-            coupons
+            categories: categories.data.items,
+            coupons: coupons.data.items
         }));
     } catch (exception: unknown) {
         if (!(exception instanceof Error)) {

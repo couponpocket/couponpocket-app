@@ -29,7 +29,7 @@ import {PersistGate} from "redux-persist/integration/react";
 
 const loadInitialValues = async () => {
     try {
-        store.dispatch(syncCoupons());
+        await syncCoupons(store.dispatch);
     } catch (e) {
         console.log(e);
     }

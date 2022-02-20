@@ -14,6 +14,6 @@ export interface CouponCategoryProperties extends ResourceEntity {
     code_style: CodeStyle
 }
 
-export const getCouponCategories = async (): Promise<AxiosResponse<ApiResponse<Array<CouponCategoryProperties>>>> => {
+export const getCouponCategories = async (): Promise<AxiosResponse<ApiResponse<CouponCategoryProperties[]>>> => {
     return await api.get('/coupon-categories');
 }

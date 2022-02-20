@@ -1,5 +1,5 @@
-import api, {ApiResponse, ResourceEntity} from "../index"
-import {AxiosResponse} from "axios";
+import api, {ApiResponse, ResourceEntity} from '../index'
+import {AxiosResponse} from 'axios';
 
 export enum CodeStyle {
     CODE128 = 1,

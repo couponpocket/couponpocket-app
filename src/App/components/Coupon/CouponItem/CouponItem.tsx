@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC} from 'react';
 
 import {
     IonCheckbox,
@@ -6,11 +6,11 @@ import {
     IonLabel,
     IonNote,
     IonText
-} from "@ionic/react";
+} from '@ionic/react';
 
-import "./CouponItem.css";
-import {CouponProperties} from "../../../../api/services/coupons";
-import {FormattedDate} from "react-intl";
+import './CouponItem.css';
+import {CouponProperties} from '../../../../api/services/coupons';
+import {FormattedDate} from 'react-intl';
 
 interface CouponItemProps {
     item: CouponProperties,

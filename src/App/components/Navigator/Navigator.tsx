@@ -1,10 +1,10 @@
-import React, {FC, useRef, useState} from "react";
-import {IonReactRouter} from "@ionic/react-router";
-import {IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from "@ionic/react";
-import {Redirect, Route} from "react-router";
-import routes, {Route as RouteType} from "../../../config/routes";
-import config from "../../../config";
-import {IntlProvider} from "react-intl";
+import React, {FC, useRef, useState} from 'react';
+import {IonReactRouter} from '@ionic/react-router';
+import {IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/react';
+import {Redirect, Route} from 'react-router';
+import routes, {Route as RouteType} from '../../../config/routes';
+import config from '../../../config';
+import {IntlProvider} from 'react-intl';
 
 const Navigator: FC = () => {
     const routerRef = useRef<HTMLIonRouterOutletElement>(null);

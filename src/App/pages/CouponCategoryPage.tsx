@@ -1,11 +1,11 @@
-import React, {FC} from "react";
-import {IonRefresher, IonRefresherContent} from "@ionic/react";
+import React, {FC} from 'react';
+import {IonRefresher, IonRefresherContent} from '@ionic/react';
 
-import CouponCategoryList from "../components/CouponCategory/CouponCategoryList/CouponCategoryList";
-import {syncCoupons} from "../../helpers/coupons";
-import NavigatorPage from "../components/Navigator/NavigatorPage";
-import {NavigatorProps} from "../components/Navigator/types";
-import {useAppDispatch} from "../../store";
+import CouponCategoryList from '../components/CouponCategory/CouponCategoryList/CouponCategoryList';
+import {syncCoupons} from '../../helpers/coupons';
+import NavigatorPage from '../components/Navigator/NavigatorPage';
+import {NavigatorProps} from '../components/Navigator/types';
+import {useAppDispatch} from '../../store';
 
 type CouponCategoryPageProps = NavigatorProps;
 

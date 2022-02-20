@@ -1,10 +1,10 @@
-import {getCouponCategories} from "../api/services/coupon-categories";
-import {Toast} from "@capacitor/toast";
-import {AppDispatch} from "../store";
-import {setCoupons} from "../store/actions/coupons";
-import {getCoupons} from "../api/services/coupons";
+import {getCouponCategories} from '../api/services/coupon-categories';
+import {Toast} from '@capacitor/toast';
+import {AppDispatch} from '../store';
+import {setCoupons} from '../store/actions/coupons';
+import {getCoupons} from '../api/services/coupons';
 
-export const syncCoupons = async (dispatch: AppDispatch, callback?: () => any) => {
+export const syncCoupons = async (dispatch: AppDispatch, callback?: () => void) => {
     try {
         const categories = await getCouponCategories();
         const coupons = await getCoupons();

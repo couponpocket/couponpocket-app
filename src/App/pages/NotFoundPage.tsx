@@ -1,5 +1,5 @@
-import React, {FC} from "react";
-import {IonPage} from "@ionic/react";
+import React, {FC} from 'react';
+import {IonPage} from '@ionic/react';
 
 const NotFoundPage: FC = () => (
     <IonPage>

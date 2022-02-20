@@ -1,7 +1,7 @@
-import {createReducer} from "@reduxjs/toolkit";
-import {setCoupons} from "../actions/coupons";
-import {CouponProperties} from "../../api/services/coupons";
-import {CouponCategoryProperties} from "../../api/services/coupon-categories";
+import {createReducer} from '@reduxjs/toolkit';
+import {setCoupons} from '../actions/coupons';
+import {CouponProperties} from '../../api/services/coupons';
+import {CouponCategoryProperties} from '../../api/services/coupon-categories';
 
 export interface CouponsState {
     categories: CouponCategoryProperties[];

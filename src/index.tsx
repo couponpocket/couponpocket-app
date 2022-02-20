@@ -4,8 +4,8 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from './App';
 
-import "@capacitor/core";
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import '@capacitor/core';
+import {defineCustomElements} from '@ionic/pwa-elements/loader';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

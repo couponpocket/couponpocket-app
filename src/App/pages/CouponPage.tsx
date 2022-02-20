@@ -1,31 +1,36 @@
-import React, {FC, useCallback, useState} from "react";
+import React, {FC, useCallback, useState} from 'react';
 
-import {IonFab, IonFabButton, IonIcon, IonRefresher, IonRefresherContent} from "@ionic/react";
+import {IonFab, IonFabButton, IonIcon, IonRefresher, IonRefresherContent} from '@ionic/react';
 
-import NavigatorPage from "../components/Navigator/NavigatorPage";
-import CouponList from "../components/Coupon/CouponList/CouponList";
-import NotFoundPage from "./NotFoundPage";
-import NavigatorBackButton from "../components/Navigator/NavigatorBackButton";
-import {checkmarkDoneOutline, checkmarkDoneSharp} from "ionicons/icons";
-import {NavigatorProps} from "../components/Navigator/types";
-import {useAppDispatch, useAppSelector} from "../../store";
-import {syncCoupons} from "../../helpers/coupons";
-import CouponWatchlistModal from "../components/CouponWatchlistModal/CouponWatchlistModal";
+import NavigatorPage from '../components/Navigator/NavigatorPage';
+import CouponList from '../components/Coupon/CouponList/CouponList';
+import NotFoundPage from './NotFoundPage';
+import NavigatorBackButton from '../components/Navigator/NavigatorBackButton';
+import {checkmarkDoneOutline, checkmarkDoneSharp} from 'ionicons/icons';
+import {NavigatorProps} from '../components/Navigator/types';
+import {useAppDispatch, useAppSelector} from '../../store';
+import {syncCoupons} from '../../helpers/coupons';
+import CouponWatchlistModal from '../components/CouponWatchlistModal/CouponWatchlistModal';
+import {RouteComponentProps} from 'react-router';
 
-type CouponPage = NavigatorProps;
+interface MatchProps {
+    id: string
+}
 
-const CouponPage: FC<CouponPage> = ({router, ...props}) => {
+type CouponPage = NavigatorProps & RouteComponentProps<MatchProps>;
+
+const CouponPage: FC<CouponPage> = ({router, match}) => {
     const [watchlist, setWatchlist] = useState<number[]>([]);
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useAppDispatch();
     const categories = useAppSelector(state => state.coupons.categories);
 
-    const partner = categories.find((item) => item.id == props.match.params.id);
+    const partner = categories.find((item) => item.id.toString() === match.params.id);
 
     const toggleItem = useCallback((ean: number) => {
         if (watchlist.includes(ean)) {
-            setWatchlist(watchlist.filter(item => ean != item));
+            setWatchlist(watchlist.filter(item => ean !== item));
         } else {
             setWatchlist([...watchlist, ean]);
         }

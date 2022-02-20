@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useRef} from "react";
+import React, {FC, useEffect, useRef} from 'react';
 
-import {IonButton, IonIcon, IonSlide, IonSlides} from "@ionic/react";
-import {closeOutline, closeSharp} from "ionicons/icons";
+import {IonButton, IonIcon, IonSlide, IonSlides} from '@ionic/react';
+import {closeOutline, closeSharp} from 'ionicons/icons';
 
-import Coupon from "../Coupon/Coupon";
+import Coupon from '../Coupon/Coupon';
 
-import "./CouponWatchlistModal.css";
-import NavigatorModal from "../Navigator/NavigatorModal";
-import {CouponCategoryProperties} from "../../../api/services/coupon-categories";
-import {useAppSelector} from "../../../store";
+import './CouponWatchlistModal.css';
+import NavigatorModal from '../Navigator/NavigatorModal';
+import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
+import {useAppSelector} from '../../../store';
 
 interface WatchlistModal {
     router: HTMLIonRouterOutletElement,

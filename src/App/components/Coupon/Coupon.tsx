@@ -1,12 +1,13 @@
-import React, {FC} from "react";
+import React, {FC} from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Barcode from 'react-barcode';
-import {IonCard, IonCardContent, IonCardHeader, IonText} from "@ionic/react";
-import {CouponProperties} from "../../../api/services/coupons";
-import {CouponCategoryProperties} from "../../../api/services/coupon-categories";
-import {FormattedDate} from "react-intl";
+import {IonCard, IonCardContent, IonCardHeader, IonText} from '@ionic/react';
+import {CouponProperties} from '../../../api/services/coupons';
+import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
+import {FormattedDate} from 'react-intl';
 
-import "./Coupon.css";
+import './Coupon.css';
 
 interface CouponProps {
     item: CouponProperties,

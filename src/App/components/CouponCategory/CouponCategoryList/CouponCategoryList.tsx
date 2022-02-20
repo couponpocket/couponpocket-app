@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { IonGrid, IonRow } from "@ionic/react";
-import CouponCategory from "../CouponCategory";
-import {useAppSelector} from "../../../../store";
+import {IonGrid, IonRow} from '@ionic/react';
+import CouponCategory from '../CouponCategory';
+import {useAppSelector} from '../../../../store';
 
 const CouponCategoryList = () => {
     const categories = useAppSelector(state => state.coupons.categories);

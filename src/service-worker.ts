@@ -30,7 +30,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
     // Return false to exempt requests from being fulfilled by index.html.
-    ({request, url}: { request: Request; url: URL }) => {
+    ({request, url}: {request: Request; url: URL}) => {
         // If this isn't a navigation, skip.
         if (request.mode !== 'navigate') {
             return false;
@@ -64,8 +64,8 @@ registerRoute(
         plugins: [
             // Ensure that once this runtime cache reaches a maximum size the
             // least-recently used images are removed.
-            new ExpirationPlugin({maxEntries: 50}),
-        ],
+            new ExpirationPlugin({maxEntries: 50})
+        ]
     })
 );
 

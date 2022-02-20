@@ -1,11 +1,12 @@
-import CouponCategoryPage from "../App/pages/CouponCategoryPage";
-import {albumsOutline, albumsSharp, barcodeOutline, barcodeSharp, cog, cogSharp} from "ionicons/icons";
-import CouponPage from "../App/pages/CouponPage";
-import CardsPage from "../App/pages/CardsPage";
-import SettingsPage from "../App/pages/SettingsPage";
-import {FC} from "react";
+import CouponCategoryPage from '../App/pages/CouponCategoryPage';
+import {albumsOutline, albumsSharp, barcodeOutline, barcodeSharp, cog, cogSharp} from 'ionicons/icons';
+import CouponPage from '../App/pages/CouponPage';
+import CardsPage from '../App/pages/CardsPage';
+import SettingsPage from '../App/pages/SettingsPage';
+import {FC} from 'react';
 
 export interface Route {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component: FC<any>,
     key: string,
     path: string,

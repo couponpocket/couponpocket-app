@@ -1,5 +1,5 @@
-import axios, {AxiosInstance} from "axios";
-import config from "../config";
+import axios, {AxiosInstance} from 'axios';
+import config from '../config';
 
 export interface ApiResponse<T> {
     status: boolean,
@@ -7,7 +7,7 @@ export interface ApiResponse<T> {
 }
 
 export interface ResourceEntity {
-    id: string
+    id: number
 }
 
 const api: AxiosInstance = axios.create({

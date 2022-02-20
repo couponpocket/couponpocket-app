@@ -1,4 +1,4 @@
-import {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
+import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
 import {IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, isPlatform} from '@ionic/react';
 
 type NavigatorPageProps = PropsWithChildren<{
@@ -16,13 +16,13 @@ type NavigatorPageProps = PropsWithChildren<{
 }>
 
 const NavigatorPage: FC<NavigatorPageProps> = ({
-                                                   children,
-                                                   title,
-                                                   buttons = undefined,
-                                                   collapse = true,
-                                                   className,
-                                                   headerChildren
-                                               }) => {
+    children,
+    title,
+    buttons = undefined,
+    collapse = true,
+    className,
+    headerChildren
+}) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
 

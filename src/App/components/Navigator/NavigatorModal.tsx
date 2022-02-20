@@ -1,4 +1,4 @@
-import {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
+import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
 import {IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from '@ionic/react';
 
 type NavigatorModalProps = PropsWithChildren<{
@@ -16,16 +16,16 @@ type NavigatorModalProps = PropsWithChildren<{
 }>
 
 const NavigatorModal: FC<NavigatorModalProps> = ({
-                                                     children,
-                                                     title,
-                                                     buttons,
-                                                     headerChildren: headerChildrenProp,
-                                                     router,
-                                                     showModal,
-                                                     setShowModal,
-                                                     modalClassName,
-                                                     contentClassName
-                                                 }) => {
+    children,
+    title,
+    buttons,
+    headerChildren: headerChildrenProp,
+    router,
+    showModal,
+    setShowModal,
+    modalClassName,
+    contentClassName
+}) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
 
@@ -57,7 +57,7 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}
-        >
+            >
             <IonHeader translucent={true}>
                 <IonToolbar>
                     {startButtons ? <IonButtons slot="start">{startButtons}</IonButtons> : null}

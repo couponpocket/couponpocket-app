@@ -1,9 +1,8 @@
-import React, {FC} from "react";
-import NavigatorPage from "../components/Navigator/NavigatorPage";
-import {NavigatorProps} from "../components/Navigator/types";
+import React, {FC} from 'react';
+import NavigatorPage from '../components/Navigator/NavigatorPage';
+import {NavigatorProps} from '../components/Navigator/types';
 
-interface SettingsPageProps extends NavigatorProps {
-}
+type SettingsPageProps = NavigatorProps
 
 
 const Settings: FC<SettingsPageProps> = ({title}) => {

@@ -1,9 +1,8 @@
-import React, {FC} from "react";
-import NavigatorPage from "../components/Navigator/NavigatorPage";
-import {NavigatorProps} from "../components/Navigator/types";
+import React, {FC} from 'react';
+import NavigatorPage from '../components/Navigator/NavigatorPage';
+import {NavigatorProps} from '../components/Navigator/types';
 
-interface CardsPageProps extends NavigatorProps {
-}
+type CardsPageProps = NavigatorProps
 
 const Cards: FC<CardsPageProps> = ({title}) => {
     return (

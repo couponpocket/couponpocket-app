@@ -16,6 +16,11 @@
     font-size: 12px;
 }
 
+.coupon-source {
+    display: block;
+    font-size: 12px;
+}
+
 .coupon-valid-till {
     font-size: 16px;
     align-self: center;

@@ -36,8 +36,21 @@
 /* CARD CONTENT */
 .coupon-card-details {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 15px 0;
+}
+
+.coupon-card-condition,
+.coupon-card-valid-till,
+.coupon-card-source {
+    text-align: left;
+}
+
+.coupon-card-source {
+    flex-basis: 100%;
+    margin-top: 5px;
+    font-size: 12px;
 }
 
 .coupon-card-barcode {

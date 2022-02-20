@@ -32,6 +32,9 @@ const CouponItem: FC<CouponItemProps> = ({item, checked, toggleItem}) => {
                 <IonText className="coupon-ean">
                     Code: {item.ean}
                 </IonText>
+                <IonText className="coupon-source">
+                    Quelle: {item.source}
+                </IonText>
             </IonLabel>
             <IonNote className="coupon-valid-till">
                 Bis <FormattedDate value={item.valid_till} dateStyle="medium"/>

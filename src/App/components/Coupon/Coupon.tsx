@@ -35,6 +35,9 @@ const Coupon: FC<CouponProps> = ({item, partner}) => (
                 <div className="coupon-card-valid-till">
                     Bis <FormattedDate value={item.valid_till} dateStyle="medium"/>
                 </div>
+                <div className="coupon-card-source">
+                    Quelle: {item.source}
+                </div>
             </div>
             <div className="coupon-card-barcode">
                 <Barcode value={item.ean.toString()} renderer="svg"/>

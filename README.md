@@ -9,7 +9,7 @@ This repository is for contains the frontend of the Coupon Pocket app. The app w
 ## Getting Started
 
 * [Download the installer](https://nodejs.org/) for Node LTS.
-* Clone this repository: `git clone https://bitbucket.org/rene-muller/app.couponpocket.de-frontend.git`.
+* Clone this repository: `git clone https://github.com/couponpocket/couponpocket-app.git`.
 * Run `npm install` from the project root.
 * Run `npx cap serve` in a terminal from the project root.
 * Profit. :tada:

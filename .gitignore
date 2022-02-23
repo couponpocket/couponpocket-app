@@ -1,3 +1,9 @@
+## Capacitor ##
+capacitor.config.json
+
+## React (custom) ##
+build/
+
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,phpstorm,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,phpstorm,react
 
@@ -163,8 +169,6 @@ logs
 
 node_modules
 bower_components
-
-build
 
 *.sublime*
 

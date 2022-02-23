@@ -41,19 +41,23 @@
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "cordova-res": "^0.15.4",
+    "cross-env": "^7.0.3",
     "jetifier": "^2.0.0",
     "react-scripts": "^5.0.0",
     "typescript": "^4.5.5"
   },
   "scripts": {
     "serve": "ionic serve",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
     "sync": "npx cap sync",
+    "sync:test": "cross-env NODE_ENV=test npx cap sync",
+    "sync:prod": "cross-env NODE_ENV=production npx cap sync",
+    "build": "react-scripts build && npm run sync",
+    "build:test": "cross-env REACT_APP_ENV=test react-scripts build && npm run sync:test",
+    "build:prod": "cross-env REACT_APP_ENV=production react-scripts build && npm run sync:prod",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "typecheck": "tsc",
-    "b+s": "npm run build && npm run sync",
     "postinstall": "jetifier"
   },
   "browserslist": {

@@ -1,10 +1,12 @@
 import {CapacitorConfig} from '@capacitor/cli';
 
+const env = process.env.NODE_ENV || 'development';
+
 const config: CapacitorConfig = {
     appId: 'de.couponpocket.app',
     appName: 'Couponpocket',
     webDir: 'build',
-    bundledWebRuntime: false,
+    loggingBehavior: env === 'development' ? 'debug' : 'production',
     plugins: {
         SplashScreen: {
             launchShowDuration: 1500,
@@ -17,12 +19,15 @@ const config: CapacitorConfig = {
         Keyboard: {
             resize: "native"
         }
-    },
-    server: {
-        url: 'http://localhost:8100',
-        cleartext: true
     }
 };
+
+if (env === 'development') {
+    config.server = {
+        url: 'http://localhost:8100',
+        cleartext: true
+    };
+}
 
 export default config;
 

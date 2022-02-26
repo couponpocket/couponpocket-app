@@ -7,7 +7,7 @@ export interface ApiResponse<T> {
 }
 
 export interface ResourceEntity {
-    id: number
+    id: string
 }
 
 const api: AxiosInstance = axios.create({

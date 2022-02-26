@@ -8,7 +8,7 @@ export interface CouponProperties extends ResourceEntity {
     source: string | undefined,
     valid_from: Date
     valid_till: Date,
-    coupon_category_id: number
+    coupon_category_id: string
 }
 
 export const getCoupons = async (): Promise<AxiosPromise<ApiResponse<CouponProperties[]>>> => {

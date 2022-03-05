@@ -1,7 +1,7 @@
-import React, {FC, PropsWithChildren} from "react";
+import React, {FC, PropsWithChildren} from 'react';
 import {
     IonIcon, IonItem, IonThumbnail
-} from "@ionic/react";
+} from '@ionic/react';
 
 import './SettingsItem.css';
 

@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {login, logout} from "../actions/authentication";
+import {login, logout} from '../actions/authentication';
 
 export interface User {
     name: string,

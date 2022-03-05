@@ -5,7 +5,7 @@ import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import CapacitorStorage from 'redux-persist-capacitor';
 
 import couponReducer, {CouponsState} from './reducers/coupons';
-import authenticationReducer, {AuthenticationState} from "./reducers/authentication";
+import authenticationReducer, {AuthenticationState} from './reducers/authentication';
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from 'redux-persist/es/constants';
 
 export interface AppState {

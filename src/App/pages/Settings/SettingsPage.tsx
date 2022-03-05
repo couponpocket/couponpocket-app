@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import NavigatorPage from '../../components/Navigator/NavigatorPage';
 import {NavigatorProps} from '../../components/Navigator/types';
-import {IonLabel, IonList, IonListHeader} from "@ionic/react";
+import {IonLabel, IonList, IonListHeader} from '@ionic/react';
 import {
     bug,
     bugSharp,
@@ -11,11 +11,11 @@ import {
     personSharp,
     phonePortrait,
     phonePortraitSharp, shareSocial, shareSocialSharp, star, starSharp
-} from "ionicons/icons";
-import SettingsItem from "../../components/Settings/SettingsItem/SettingsItem";
-import routes from "../../../config/routes";
-import {App} from "@capacitor/app";
-import {RateApp} from "capacitor-rate-app";
+} from 'ionicons/icons';
+import SettingsItem from '../../components/Settings/SettingsItem/SettingsItem';
+import routes from '../../../config/routes';
+import {App} from '@capacitor/app';
+import {RateApp} from 'capacitor-rate-app';
 
 type SettingsPageProps = NavigatorProps
 

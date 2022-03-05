@@ -4,9 +4,9 @@ import CouponPage from '../App/pages/CouponPage';
 import CardsPage from '../App/pages/CardsPage';
 import SettingsPage from '../App/pages/Settings/SettingsPage';
 import {FC} from 'react';
-import LoginPage from "../App/pages/Settings/Authentication/LoginPage";
-import RegisterPage from "../App/pages/Settings/Authentication/RegisterPage";
-import PasswordForgotPage from "../App/pages/Settings/Authentication/PasswordForgotPage";
+import LoginPage from '../App/pages/Settings/Authentication/LoginPage';
+import RegisterPage from '../App/pages/Settings/Authentication/RegisterPage';
+import PasswordForgotPage from '../App/pages/Settings/Authentication/PasswordForgotPage';
 
 export interface Route {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,7 +90,7 @@ const routes: RoutesProps = {
         key: 'LOGIN',
         path: '/settings/login',
         meta: {
-            name: 'Anmelden',
+            name: 'Anmelden'
         }
     },
     register: {
@@ -98,7 +98,7 @@ const routes: RoutesProps = {
         key: 'REGISTER',
         path: '/settings/register',
         meta: {
-            name: 'Los geht\'s',
+            name: 'Los geht\'s'
         }
     },
     passwordForgot: {
@@ -106,7 +106,7 @@ const routes: RoutesProps = {
         key: 'PASSWORD_FORGOT',
         path: '/settings/password-forgot',
         meta: {
-            name: 'Passwort vergessen',
+            name: 'Passwort vergessen'
         }
     }
 };

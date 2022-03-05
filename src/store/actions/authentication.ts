@@ -1,5 +1,5 @@
-import {createAction} from "@reduxjs/toolkit";
-import {User} from "../reducers/authentication";
+import {createAction} from '@reduxjs/toolkit';
+import {User} from '../reducers/authentication';
 
 const action = {
     LOGIN: 'AUTHENTICATION_LOGIN',

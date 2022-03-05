@@ -1,6 +1,6 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
-import {IonInput, IonLabel} from "@ionic/react";
-import {TextFieldTypes} from "@ionic/core";
+import React, {Dispatch, FC, SetStateAction} from 'react';
+import {IonInput, IonLabel} from '@ionic/react';
+import {TextFieldTypes} from '@ionic/core';
 
 import './Input.css';
 
@@ -18,8 +18,6 @@ interface InputProps {
 }
 
 const Input: FC<InputProps> = ({label, placeholder, name, type}) => {
-
-
     return (
         <>
             <IonLabel>

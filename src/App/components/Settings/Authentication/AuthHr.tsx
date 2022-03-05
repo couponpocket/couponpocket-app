@@ -1,5 +1,5 @@
-import React, {FC} from "react";
-import {IonCol, IonRow} from "@ionic/react";
+import React, {FC} from 'react';
+import {IonCol, IonRow} from '@ionic/react';
 
 import './AuthHr.css';
 

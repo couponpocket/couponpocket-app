@@ -1,11 +1,11 @@
-import React, {FC, useContext, useState} from "react";
-import NavigatorPage from "../../../components/Navigator/NavigatorPage";
-import {NavigatorProps} from "../../../components/Navigator/types";
-import {IonButton, IonCol, IonGrid, IonRow, NavContext} from "@ionic/react";
-import Input, {ErrorState} from "../../../components/Settings/Authentication/Input";
-import NavigatorBackButton from "../../../components/Navigator/NavigatorBackButton";
-import routes from "../../../../config/routes";
-import {noPageAnimation} from "../../../../helpers/navigation";
+import React, {FC, useContext, useState} from 'react';
+import NavigatorPage from '../../../components/Navigator/NavigatorPage';
+import {NavigatorProps} from '../../../components/Navigator/types';
+import {IonButton, IonCol, IonGrid, IonRow, NavContext} from '@ionic/react';
+import Input, {ErrorState} from '../../../components/Settings/Authentication/Input';
+import NavigatorBackButton from '../../../components/Navigator/NavigatorBackButton';
+import routes from '../../../../config/routes';
+import {noPageAnimation} from '../../../../helpers/navigation';
 
 type PasswordForgotPageProps = NavigatorProps;
 

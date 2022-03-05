@@ -1,14 +1,14 @@
-import React, {FC, FormEventHandler, useCallback, useContext, useState} from "react";
-import NavigatorPage from "../../../components/Navigator/NavigatorPage";
-import {NavigatorProps} from "../../../components/Navigator/types";
-import NavigatorBackButton from "../../../components/Navigator/NavigatorBackButton";
-import {IonButton, IonCol, IonFab, IonGrid, IonIcon, IonRow, NavContext} from "@ionic/react";
-import {logoApple, logoGoogle} from "ionicons/icons";
-import AuthHr from "../../../components/Settings/Authentication/AuthHr";
-import Input, {ErrorState} from "../../../components/Settings/Authentication/Input";
+import React, {FC, FormEventHandler, useCallback, useContext, useState} from 'react';
+import NavigatorPage from '../../../components/Navigator/NavigatorPage';
+import {NavigatorProps} from '../../../components/Navigator/types';
+import NavigatorBackButton from '../../../components/Navigator/NavigatorBackButton';
+import {IonButton, IonCol, IonFab, IonGrid, IonIcon, IonRow, NavContext} from '@ionic/react';
+import {logoApple, logoGoogle} from 'ionicons/icons';
+import AuthHr from '../../../components/Settings/Authentication/AuthHr';
+import Input, {ErrorState} from '../../../components/Settings/Authentication/Input';
 
-import routes from "../../../../config/routes";
-import {noPageAnimation} from "../../../../helpers/navigation";
+import routes from '../../../../config/routes';
+import {noPageAnimation} from '../../../../helpers/navigation';
 
 type LoginPageProps = NavigatorProps;
 

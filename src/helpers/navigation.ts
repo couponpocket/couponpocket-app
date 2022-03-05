@@ -1,4 +1,4 @@
-import {createAnimation} from "@ionic/react";
+import {createAnimation} from '@ionic/react';
 
 
 export const noPageAnimation = () => {

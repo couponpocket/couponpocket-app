@@ -1,0 +1,25 @@
+.auth-hr {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 1em 0;
+    color: var(--ion-color-step-400);
+}
+
+.auth-hr::before {
+    content: '';
+    position: absolute;
+    background: var(--ion-color-step-200);
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    z-index: 1;
+}
+
+.auth-hr span {
+    position: relative;
+    background: var(--ion-background-color, #FFF);
+    padding: 0 1em;
+    z-index: 2;
+}

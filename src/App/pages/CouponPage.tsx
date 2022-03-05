@@ -41,8 +41,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
     }
 
     return (
-        <NavigatorPage title={partner.name} className="coupons" collapse={true}
-                       buttons={<NavigatorBackButton text="Coupons"/>}>
+        <NavigatorPage title={partner.name} className="coupons" buttons={<NavigatorBackButton text="Coupons"/>}>
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(dispatch, () => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>

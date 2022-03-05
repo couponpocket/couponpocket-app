@@ -6,8 +6,7 @@ import {getCoupons} from '../api/services/coupons';
 
 export const syncCoupons = async (dispatch: AppDispatch, callback?: () => void) => {
     try {
-        const categories = await getCouponCategories();
-        const coupons = await getCoupons();
+        const [categories, coupons] = await Promise.all([getCouponCategories(), getCoupons()]);
 
         dispatch(setCoupons({
             categories: categories.data.items,

@@ -1,19 +1,29 @@
-import axios, {AxiosInstance} from 'axios';
-import config from '../config';
-
-export interface ApiResponse<T> {
-    status: boolean,
-    items: T
-}
+import config from "../config";
+import axios, {AxiosResponse, AxiosRequestConfig, AxiosInstance} from "axios";
 
 export interface ResourceEntity {
     id: string
 }
 
-const api: AxiosInstance = axios.create({
-    baseURL: config.apiEndpoint
-});
+export class ResponseError<T> extends Error {
+    response: AxiosResponse<T> | undefined;
 
-api.defaults.headers.post['Content-Type'] = 'application/json';
+    constructor(message: string, response: AxiosResponse<T> | undefined) {
+        super(message);
+        this.name = 'ResponseError';
+        this.response = response;
+    }
+}
 
-export default api;
+const api = (): AxiosInstance => {
+    const options: AxiosRequestConfig = {
+        baseURL: config.apiEndpoint
+    };
+
+    const instance = axios.create(options);
+    instance.defaults.headers.post['Content-Type'] = 'application/json';
+
+    return instance;
+}
+
+export default api();

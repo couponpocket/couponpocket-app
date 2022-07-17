@@ -9,8 +9,8 @@ export const syncCoupons = async (dispatch: AppDispatch, callback?: () => void) 
         const [categories, coupons] = await Promise.all([getCouponCategories(), getCoupons()]);
 
         dispatch(setCoupons({
-            categories: categories.data.items,
-            coupons: coupons.data.items
+            categories,
+            coupons
         }));
     } catch (exception: unknown) {
         if (!(exception instanceof Error)) {

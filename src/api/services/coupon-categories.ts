@@ -1,5 +1,4 @@
-import api, {ApiResponse, ResourceEntity} from '../index'
-import {AxiosResponse} from 'axios';
+import api, {ResourceEntity} from '../index'
 
 export enum CodeStyle {
     CODE128 = 1,
@@ -14,6 +13,9 @@ export interface CouponCategoryProperties extends ResourceEntity {
     code_style: CodeStyle
 }
 
-export const getCouponCategories = async (): Promise<AxiosResponse<ApiResponse<CouponCategoryProperties[]>>> => {
-    return await api.get('/coupon-categories');
+type CouponCategoriesResponse = CouponCategoryProperties[];
+
+export const getCouponCategories = async (): Promise<CouponCategoriesResponse> => {
+    const response = await api.get<CouponCategoriesResponse>('/coupon-categories');
+    return response.data;
 }

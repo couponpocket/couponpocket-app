@@ -53,7 +53,7 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
 
     return (
         <IonModal isOpen={showModal}
-                  swipeToClose
+                  swipeToClose={true}
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}

@@ -32,13 +32,13 @@ const LoginPage: FC<LoginPageProps> = ({title}) => {
             <IonGrid>
                 <IonRow>
                     <IonCol offsetMd="2" sizeMd="4" offsetXl="3" sizeXl="3">
-                        <IonButton color="light" expand="block" disabled>
+                        <IonButton color="light" expand="block" disabled={true}>
                             <IonIcon slot="start" icon={logoApple}/>
                             Mit Apple
                         </IonButton>
                     </IonCol>
                     <IonCol sizeMd="4" sizeXl="3">
-                        <IonButton color="light" expand="block" disabled>
+                        <IonButton color="light" expand="block" disabled={true}>
                             <IonIcon slot="start" icon={logoGoogle}/>
                             Mit Google
                         </IonButton>

@@ -45,7 +45,7 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                               iconIos={person}
                               iconMd={personSharp}
                               routerLink={routes.login.path}
-                              detail>
+                              detail={true}>
                     <IonLabel className="ion-text-wrap">
                         <h2>Account</h2>
                         <p>Du bist aktuell nicht an gemeldet</p>
@@ -54,7 +54,7 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                 <SettingsItem avatarColor="pink"
                               iconIos={notifications}
                               iconMd={notificationsSharp}
-                              detail>
+                              detail={true}>
                     <IonLabel className="ion-text-wrap">
                         <h2>Benachrichtungen</h2>
                         <p>Wann möchtest du Benachrichtungen erhalten?</p>
@@ -63,7 +63,7 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                 <SettingsItem avatarColor="orange"
                               iconIos={phonePortrait}
                               iconMd={phonePortraitSharp}
-                              detail>
+                              detail={true}>
                     <IonLabel className="ion-text-wrap">
                         <h2>Geräte</h2>
                         <p>Angemeldete Sitzungen</p>
@@ -76,7 +76,7 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                 <SettingsItem avatarColor="grey"
                               iconIos={bug}
                               iconMd={bugSharp}
-                              detail>
+                              detail={true}>
                     <IonLabel className="ion-text-wrap">
                         <h2>Bug report</h2>
                         <p>Fehler in der App melden</p>

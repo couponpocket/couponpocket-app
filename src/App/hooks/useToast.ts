@@ -2,6 +2,7 @@ import {useIonToast} from '@ionic/react';
 import {ToastOptions, IonicSafeString} from '@ionic/core';
 import {HookOverlayOptions} from '@ionic/react/dist/types/hooks/HookOverlayOptions';
 import {useState} from 'react';
+import {closeOutline} from 'ionicons/icons';
 
 const toastOptions: ToastOptions & HookOverlayOptions = {
     position: 'top',
@@ -9,7 +10,7 @@ const toastOptions: ToastOptions & HookOverlayOptions = {
     buttons: [
         {
             side: 'end',
-            icon: 'close'
+            icon: closeOutline
         }
     ]
 }

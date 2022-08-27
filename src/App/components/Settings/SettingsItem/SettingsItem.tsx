@@ -6,12 +6,12 @@ import {
 import './SettingsItem.css';
 
 type SettingsItemProps = PropsWithChildren<{
-    avatarColor: string
-    iconIos: string
-    iconMd: string
-    detail?: boolean,
-    onClick?: () => void
-    routerLink?: string
+    avatarColor: string;
+    iconIos: string;
+    iconMd: string;
+    detail?: boolean;
+    onClick?: () => void;
+    routerLink?: string;
 }>;
 
 const SettingsItem: FC<SettingsItemProps> = ({avatarColor, iconIos, iconMd, routerLink, detail = false, onClick, children}) => {

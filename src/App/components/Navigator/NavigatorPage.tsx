@@ -2,17 +2,17 @@ import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, 
 import {IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, isPlatform} from '@ionic/react';
 
 type NavigatorPageProps = PropsWithChildren<{
-    title?: ReactChild,
+    title?: ReactChild;
     buttons?: {
-        start?: ReactElement,
-        end?: ReactElement
-    } | ReactElement,
-    collapse?: boolean,
-    className?: string,
+        start?: ReactElement;
+        end?: ReactElement;
+    } | ReactElement;
+    collapse?: boolean;
+    className?: string;
     headerChildren?: {
-        top?: ReactElement,
-        bottom?: ReactElement
-    } | ReactElement
+        top?: ReactElement;
+        bottom?: ReactElement;
+    } | ReactElement;
 }>
 
 const NavigatorPage: FC<NavigatorPageProps> = ({

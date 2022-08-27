@@ -2,17 +2,17 @@ import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, 
 import {IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from '@ionic/react';
 
 type NavigatorModalProps = PropsWithChildren<{
-    title?: ReactChild,
+    title?: ReactChild;
     buttons?: {
-        start?: ReactElement,
-        end?: ReactElement
-    } | ReactElement,
-    headerChildren?: ReactElement
-    router?: HTMLIonRouterOutletElement,
-    showModal: boolean,
-    setShowModal: (state: boolean) => void,
-    modalClassName?: string,
-    contentClassName?: string
+        start?: ReactElement;
+        end?: ReactElement;
+    } | ReactElement;
+    headerChildren?: ReactElement;
+    router?: HTMLIonRouterOutletElement;
+    showModal: boolean;
+    setShowModal: (state: boolean) => void;
+    modalClassName?: string;
+    contentClassName?: string;
 }>
 
 const NavigatorModal: FC<NavigatorModalProps> = ({

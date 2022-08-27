@@ -10,8 +10,8 @@ import {FormattedDate} from 'react-intl';
 import './Coupon.css';
 
 interface CouponProps {
-    item: CouponProperties,
-    partner: CouponCategoryProperties
+    item: CouponProperties;
+    partner: CouponCategoryProperties;
 }
 
 const Coupon: FC<CouponProps> = ({item, partner}) => (

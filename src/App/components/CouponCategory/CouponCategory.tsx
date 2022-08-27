@@ -4,7 +4,7 @@ import './CouponCategory.css';
 import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
 
 interface CouponCategoryProps {
-    item: CouponCategoryProperties
+    item: CouponCategoryProperties;
 }
 
 const CouponCategory: FC<CouponCategoryProps> = ({item, ...htmlProps}) => {

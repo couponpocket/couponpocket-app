@@ -14,7 +14,7 @@ import CouponWatchlistModal from '../components/CouponWatchlistModal/CouponWatch
 import {RouteComponentProps} from 'react-router';
 
 interface MatchProps {
-    id: string
+    id: string;
 }
 
 type CouponPage = NavigatorProps & RouteComponentProps<MatchProps>;

@@ -2,8 +2,8 @@ import {createReducer} from '@reduxjs/toolkit';
 import {login, logout} from '../actions/authentication';
 
 export interface User {
-    name: string,
-    email: string
+    name: string;
+    email: string;
 }
 
 export interface AuthenticationState {

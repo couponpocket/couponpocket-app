@@ -7,8 +7,8 @@ const action = {
 }
 
 export const login = createAction<{
-    user: User,
-    token: string
+    user: User;
+    token: string;
 }>(action.LOGIN)
 
 export const logout = createAction(action.LOGOUT);

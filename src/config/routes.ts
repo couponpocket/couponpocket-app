@@ -10,25 +10,25 @@ import PasswordForgotPage from '../App/pages/Settings/Authentication/PasswordFor
 
 export interface Route {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    component: FC<any>,
-    key: string,
-    path: string,
-    exact?: boolean,
-    defaultPath?: string,
+    component: FC<any>;
+    key: string;
+    path: string;
+    exact?: boolean;
+    defaultPath?: string;
     meta?: {
-        name?: string,
+        name?: string;
         tab?: {
-            label: string
-        },
+            label: string;
+        };
         icons?: {
-            iconIos: string,
-            iconMd: string
-        }
-    }
+            iconIos: string;
+            iconMd: string;
+        };
+    };
 }
 
 export interface RoutesProps {
-    [s: string]: Route
+    [s: string]: Route;
 }
 
 const routes: RoutesProps = {

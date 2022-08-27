@@ -11,11 +11,11 @@ import {CouponCategoryProperties} from '../../../api/services/coupon-categories'
 import {useAppSelector} from '../../../store';
 
 interface WatchlistModal {
-    router: HTMLIonRouterOutletElement,
-    showModal: boolean,
-    setShowModal: (x: boolean) => void,
-    partner: CouponCategoryProperties,
-    watchlist: number[]
+    router: HTMLIonRouterOutletElement;
+    showModal: boolean;
+    setShowModal: (x: boolean) => void;
+    partner: CouponCategoryProperties;
+    watchlist: number[];
 }
 
 const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowModal, partner, watchlist}) => {

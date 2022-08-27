@@ -7,10 +7,10 @@ export enum CodeStyle {
 }
 
 export interface CouponCategoryProperties extends ResourceEntity {
-    name: string,
-    color_background: string
-    color_foreground: string
-    code_style: CodeStyle
+    name: string;
+    color_background: string;
+    color_foreground: string;
+    code_style: CodeStyle;
 }
 
 type CouponCategoriesResponse = CouponCategoryProperties[];

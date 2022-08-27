@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^3.4.1",
-    "@clicksports/eslint-config-clicksports": "^1.6.0",
+    "@clicksports/eslint-config-clicksports": "^1.10.0",
     "@ionic/cli": "^6.18.1",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",

@@ -9,8 +9,8 @@ import authenticationReducer, {AuthenticationState} from './reducers/authenticat
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from 'redux-persist/es/constants';
 
 export interface AppState {
-    coupons: CouponsState,
-    authentication: AuthenticationState
+    coupons: CouponsState;
+    authentication: AuthenticationState;
 }
 
 const persistConfig = {

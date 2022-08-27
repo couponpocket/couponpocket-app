@@ -1,8 +1,17 @@
-import config from "../config";
-import axios, {AxiosResponse, AxiosRequestConfig, AxiosInstance} from "axios";
+import config from '../config';
+import axios, {AxiosResponse, AxiosRequestConfig, AxiosInstance} from 'axios';
+import {ErrorState} from '../App/components/Settings/Authentication/Input';
+
+export interface ExceptionResponse {
+    message: string;
+}
+
+export interface ValidationExceptionResponse extends ExceptionResponse {
+    errors: ErrorState;
+}
 
 export interface ResourceEntity {
-    id: string
+    id: string;
 }
 
 export class ResponseError<T> extends Error {

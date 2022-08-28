@@ -59,3 +59,19 @@ export const verify = async (data: VerifyRequest, token: string) => {
         }
     }
 }
+
+export const resendVerificationEmail = async (token: string) => {
+    try {
+        await api.post('/email/resend', null, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+    } catch (e) {
+        if (!axios.isAxiosError(e)) {
+            console.error(e);
+            return;
+        }
+        throw new ResponseError<ExceptionResponse>(e.message, e.response);
+    }
+}

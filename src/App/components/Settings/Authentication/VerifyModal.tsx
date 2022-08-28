@@ -1,6 +1,6 @@
 import React, {FC, FormEventHandler, useCallback, useState} from 'react';
 import NavigatorModal, {NavigatorModalProps} from '../../Navigator/NavigatorModal';
-import {RegisterResponse, verify} from '../../../../api/services/authentication';
+import {RegisterResponse, resendVerificationEmail, verify} from '../../../../api/services/authentication';
 import Input, {ErrorState} from './Input';
 import {ResponseError} from '../../../../api';
 import useToast from '../../../hooks/useToast';
@@ -16,6 +16,32 @@ const VerifyModal: FC<VerifyModalProps> = ({router, showModal, setShowModal, reg
 
     const [showToast] = useToast();
 
+    const resendVerifyEmail = async () => {
+        if (!registeredResponse) {
+            return;
+        }
+
+        try {
+            await resendVerificationEmail(registeredResponse.access_token);
+            await showToast('Die Bestätiguns-E-Mail wurde erneut versendet. Bitte prüfe auch deinen SPAM-Ordner.');
+        } catch (e) {
+            if (!(e instanceof ResponseError)) {
+                console.log(e);
+                return;
+            }
+
+            switch (e.response?.status) {
+                case 403:
+                    await showToast(e.response?.data.message);
+                    setShowModal(false);
+                    break;
+                default:
+                    await showToast(e.response?.data.message);
+            }
+        }
+
+    }
+
     const onSubmit: FormEventHandler<HTMLFormElement> = useCallback(async (event) => {
         event.preventDefault();
 
@@ -27,8 +53,9 @@ const VerifyModal: FC<VerifyModalProps> = ({router, showModal, setShowModal, reg
 
         try {
             await verify(entities, registeredResponse.access_token);
+            await showToast('Dein Account wurde erfolgreich bestätigt. Du kannst dich nun anmelden.');
             setShowModal(false);
-        } catch (e) {
+        } catch  (e) {
             if (!(e instanceof ResponseError)) {
                 console.log(e);
                 return;
@@ -78,6 +105,11 @@ const VerifyModal: FC<VerifyModalProps> = ({router, showModal, setShowModal, reg
                             <IonButton type="submit" expand="block">
                                 Absenden
                             </IonButton>
+                            <div className="ion-text-center">
+                                <IonButton onClick={resendVerifyEmail} fill="clear" color="dark">
+                                    Keinen Code erhalten?
+                                </IonButton>
+                            </div>
                         </IonCol>
                     </IonRow>
                 </form>

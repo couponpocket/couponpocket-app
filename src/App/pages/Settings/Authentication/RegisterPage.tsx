@@ -58,7 +58,8 @@ const RegisterPage: FC<RegisterPageProps> = ({title}) => {
                                 <Input label="Name"
                                        name="name"
                                        placeholder="Deinen Name eingeben"
-                                       errors={errors}/>
+                                       errors={errors}
+                                       setErrors={setErrors}/>
                             </IonCol>
                         </IonRow>
                         <IonRow>
@@ -67,7 +68,8 @@ const RegisterPage: FC<RegisterPageProps> = ({title}) => {
                                        type="email"
                                        name="email"
                                        placeholder="max.mustermann@beispiel.de"
-                                       errors={errors}/>
+                                       errors={errors}
+                                       setErrors={setErrors}/>
                             </IonCol>
                         </IonRow>
                         <IonRow>
@@ -76,7 +78,8 @@ const RegisterPage: FC<RegisterPageProps> = ({title}) => {
                                        type="password"
                                        name="password"
                                        placeholder="Min. 8 Zeichen"
-                                       errors={errors}/>
+                                       errors={errors}
+                                       setErrors={setErrors}/>
                             </IonCol>
                         </IonRow>
                         <IonRow>

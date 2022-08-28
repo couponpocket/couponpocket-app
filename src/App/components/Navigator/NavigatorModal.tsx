@@ -13,6 +13,7 @@ type NavigatorModalProps = PropsWithChildren<{
     setShowModal: (state: boolean) => void;
     modalClassName?: string;
     contentClassName?: string;
+    canDismiss?: boolean;
 }>
 
 const NavigatorModal: FC<NavigatorModalProps> = ({
@@ -24,7 +25,8 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
     showModal,
     setShowModal,
     modalClassName,
-    contentClassName
+    contentClassName,
+    canDismiss
 }) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
@@ -57,6 +59,7 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}
+                  canDismiss={canDismiss}
             >
             <IonHeader translucent={true}>
                 <IonToolbar>

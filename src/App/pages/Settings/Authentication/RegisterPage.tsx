@@ -15,7 +15,7 @@ import VerifyModal from '../../../components/Settings/Authentication/VerifyModal
 
 type RegisterPageProps = NavigatorProps;
 
-const RegisterPage: FC<RegisterPageProps> = ({title}) => {
+const RegisterPage: FC<RegisterPageProps> = ({title, router}) => {
     const [errors, setErrors] = useState<ErrorState | undefined>(undefined);
     const [registeredResponse, setRegisteredResponse] = useState<RegisterResponse | undefined>(undefined);
 
@@ -48,7 +48,9 @@ const RegisterPage: FC<RegisterPageProps> = ({title}) => {
 
     return (
         <>
-            <VerifyModal showModal={!!registeredResponse} setShowModal={() => setRegisteredResponse(undefined)}
+            <VerifyModal router={router}
+                         showModal={!!registeredResponse}
+                         setShowModal={() => setRegisteredResponse(undefined)}
                          registeredResponse={registeredResponse}/>
             <NavigatorPage title={title} buttons={<NavigatorBackButton text="Einstellungen"/>}>
                 <IonGrid>

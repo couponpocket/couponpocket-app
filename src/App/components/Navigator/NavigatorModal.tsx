@@ -1,7 +1,16 @@
-import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
+import React, {
+    Dispatch,
+    FC,
+    isValidElement,
+    PropsWithChildren,
+    ReactChild,
+    ReactElement, SetStateAction,
+    useEffect,
+    useState
+} from 'react';
 import {IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from '@ionic/react';
 
-type NavigatorModalProps = PropsWithChildren<{
+export type NavigatorModalProps = PropsWithChildren<{
     title?: ReactChild;
     buttons?: {
         start?: ReactElement;
@@ -10,10 +19,10 @@ type NavigatorModalProps = PropsWithChildren<{
     headerChildren?: ReactElement;
     router?: HTMLIonRouterOutletElement;
     showModal: boolean;
-    setShowModal: (state: boolean) => void;
+    setShowModal: Dispatch<SetStateAction<boolean>>;
     modalClassName?: string;
     contentClassName?: string;
-    canDismiss?: boolean;
+    backdropDismiss?: boolean;
 }>
 
 const NavigatorModal: FC<NavigatorModalProps> = ({
@@ -26,7 +35,7 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
     setShowModal,
     modalClassName,
     contentClassName,
-    canDismiss
+    backdropDismiss
 }) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
@@ -59,7 +68,7 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}
-                  canDismiss={canDismiss}
+                  backdropDismiss={backdropDismiss}
             >
             <IonHeader translucent={true}>
                 <IonToolbar>

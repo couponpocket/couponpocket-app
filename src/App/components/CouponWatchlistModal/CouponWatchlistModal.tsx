@@ -13,7 +13,7 @@ import {useAppSelector} from '../../../store';
 interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
     router: NavigatorModalProps['router'];
     partner: CouponCategoryProperties;
-    watchlist: number[];
+    watchlist: string[];
 }
 
 const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowModal, partner, watchlist}) => {

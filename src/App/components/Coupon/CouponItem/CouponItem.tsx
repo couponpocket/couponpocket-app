@@ -15,7 +15,7 @@ import {FormattedDate} from 'react-intl';
 interface CouponItemProps {
     item: CouponProperties;
     checked: boolean;
-    toggleItem: (ean: number) => void;
+    toggleItem: (ean: string) => void;
 }
 
 const CouponItem: FC<CouponItemProps> = ({item, checked, toggleItem}) => {

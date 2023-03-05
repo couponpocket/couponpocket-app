@@ -9,8 +9,8 @@ import './couponList.css';
 
 interface CouponListProps {
     partner: CouponCategoryProperties;
-    watchlist: number[];
-    toggleItem: (ean: number) => void;
+    watchlist: string[];
+    toggleItem: (ean: string) => void;
 }
 
 interface CouponGroupList {

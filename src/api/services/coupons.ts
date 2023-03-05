@@ -3,7 +3,7 @@ import api, {ResourceEntity} from '../index'
 export interface CouponProperties extends ResourceEntity {
     points: string;
     condition: string;
-    ean: number;
+    ean: string;
     source: string | undefined;
     valid_from: Date;
     valid_till: Date;

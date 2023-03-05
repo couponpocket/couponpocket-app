@@ -41,8 +41,12 @@
     margin: 15px 0;
 }
 
+.coupon-card-valid-till {
+    margin-top: 15px;
+    text-align: right;
+}
+
 .coupon-card-condition,
-.coupon-card-valid-till,
 .coupon-card-source {
     text-align: left;
 }

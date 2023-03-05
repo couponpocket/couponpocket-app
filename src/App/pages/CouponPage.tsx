@@ -20,7 +20,7 @@ interface MatchProps {
 type CouponPage = NavigatorProps & RouteComponentProps<MatchProps>;
 
 const CouponPage: FC<CouponPage> = ({router, match}) => {
-    const [watchlist, setWatchlist] = useState<number[]>([]);
+    const [watchlist, setWatchlist] = useState<string[]>([]);
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
 
     const partner = categories.find((item) => item.id.toString() === match.params.id);
 
-    const toggleItem = useCallback((ean: number) => {
+    const toggleItem = useCallback((ean: string) => {
         if (watchlist.includes(ean)) {
             setWatchlist(watchlist.filter(item => ean !== item));
         } else {

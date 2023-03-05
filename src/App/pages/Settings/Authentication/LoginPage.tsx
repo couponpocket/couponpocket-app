@@ -9,23 +9,58 @@ import Input, {ErrorState} from '../../../components/Settings/Authentication/Inp
 
 import routes from '../../../../config/routes';
 import {noPageAnimation} from '../../../../helpers/navigation';
+import {login} from '../../../../api/services/authentication';
+import {ResponseError} from '../../../../api';
+import useToast from '../../../hooks/useToast';
+import {useAppDispatch} from '../../../../store';
+import {login as loginAction} from '../../../../store/actions/authentication';
 
 type LoginPageProps = NavigatorProps;
 
 const LoginPage: FC<LoginPageProps> = ({title}) => {
     const [errors, setErrors] = useState<ErrorState | undefined>(undefined);
-    const {navigate} = useContext(NavContext);
+    const dispatch = useAppDispatch();
 
-    const onSubmit: FormEventHandler<HTMLFormElement> = useCallback((event) => {
+    const {navigate} = useContext(NavContext);
+    const [showToast] = useToast();
+
+    const onSubmit: FormEventHandler<HTMLFormElement> = useCallback(async (event) => {
         event.preventDefault();
 
-        const data = new FormData(event.currentTarget);
+        const entities = Object.fromEntries(new FormData(event.currentTarget));
+        try {
+            const response = await login(entities);
 
-        console.log({
-            email: data.get('email'),
-            password: data.get('password')
-        });
-    }, [])
+            if (!response) {
+                await showToast('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
+                return;
+            }
+
+            dispatch(loginAction({
+                user: response.user,
+                token: response.access_token
+            }));
+            await showToast('Du hast dich erfolgreich angemeldet!');
+        } catch (e) {
+            if (!(e instanceof ResponseError)) {
+                console.log(e);
+                return;
+            }
+
+            switch (e.response?.status) {
+                case 422:
+                    setErrors(e.response.data.errors);
+                    await showToast('Es ist ein Fehler bei der Validierung aufgetreten. Bitte prüfen Sie das Formular.');
+                    break;
+                case 401:
+                    await showToast(e.response?.data.message);
+                    break;
+                default:
+                    await showToast('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
+            }
+        }
+
+    }, [dispatch, showToast])
 
     return (
         <NavigatorPage title={title} buttons={<NavigatorBackButton text="Einstellungen"/>}>
@@ -71,10 +106,12 @@ const LoginPage: FC<LoginPageProps> = ({title}) => {
                             <IonButton type="submit" expand="block">
                                 Anmelden
                             </IonButton>
+                            {/*
                             <IonButton fill="clear" color="dark"
                                        onClick={() => navigate(routes.passwordForgot.path, 'none', 'replace', noPageAnimation)}>
                                 Passwort vergessen?
                             </IonButton>
+                            */}
                         </IonCol>
                     </IonRow>
                 </form>

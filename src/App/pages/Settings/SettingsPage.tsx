@@ -16,11 +16,13 @@ import SettingsItem from '../../components/Settings/SettingsItem/SettingsItem';
 import routes from '../../../config/routes';
 import {App} from '@capacitor/app';
 import {RateApp} from 'capacitor-rate-app';
+import {useAppSelector} from '../../../store';
 
 type SettingsPageProps = NavigatorProps
 
 const Settings: FC<SettingsPageProps> = ({title}) => {
     const [version, setVersion] = useState('');
+    const user = useAppSelector(state => state.authentication.user);
 
     useEffect(() => {
         (async () => {
@@ -44,11 +46,15 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                 <SettingsItem avatarColor="blue"
                               iconIos={person}
                               iconMd={personSharp}
-                              routerLink={routes.login.path}
+                              routerLink={!user ? routes.login.path : routes.account.path}
                               detail={true}>
                     <IonLabel className="ion-text-wrap">
                         <h2>Account</h2>
-                        <p>Du bist aktuell nicht an gemeldet</p>
+                        {!user ? (
+                            <p>Du bist aktuell nicht an gemeldet</p>
+                        ) : (
+                            <p>Du bist als {user.name} angemeldet</p>
+                        )}
                     </IonLabel>
                 </SettingsItem>
                 <SettingsItem avatarColor="pink"
@@ -60,16 +66,17 @@ const Settings: FC<SettingsPageProps> = ({title}) => {
                         <p>Wann möchtest du Benachrichtungen erhalten?</p>
                     </IonLabel>
                 </SettingsItem>
-                <SettingsItem avatarColor="orange"
-                              iconIos={phonePortrait}
-                              iconMd={phonePortraitSharp}
-                              detail={true}>
-                    <IonLabel className="ion-text-wrap">
-                        <h2>Geräte</h2>
-                        <p>Angemeldete Sitzungen</p>
-                    </IonLabel>
-                </SettingsItem>
-
+                {!user ? null : (
+                    <SettingsItem avatarColor="orange"
+                                  iconIos={phonePortrait}
+                                  iconMd={phonePortraitSharp}
+                                  detail={true}>
+                        <IonLabel className="ion-text-wrap">
+                            <h2>Geräte</h2>
+                            <p>Angemeldete Sitzungen</p>
+                        </IonLabel>
+                    </SettingsItem>
+                )}
                 <IonListHeader>
                     <IonLabel>Sonstiges</IonLabel>
                 </IonListHeader>

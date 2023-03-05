@@ -7,12 +7,19 @@ import {FC} from 'react';
 import LoginPage from '../App/pages/Settings/Authentication/LoginPage';
 import RegisterPage from '../App/pages/Settings/Authentication/RegisterPage';
 import PasswordForgotPage from '../App/pages/Settings/Authentication/PasswordForgotPage';
+import AccountPage from '../App/pages/Settings/AccountPage';
+
+export const ROUTE_GUEST = 'GUEST';
+export const ROUTE_AUTHENTICATED = 'AUTHENTICATED';
+
+type RouteType = typeof ROUTE_GUEST | typeof ROUTE_AUTHENTICATED;
 
 export interface Route {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component: FC<any>;
     key: string;
     path: string;
+    type?: RouteType;
     exact?: boolean;
     defaultPath?: string;
     meta?: {
@@ -58,6 +65,7 @@ const routes: RoutesProps = {
         component: CardsPage,
         key: 'CARDS',
         path: '/cards',
+        type: ROUTE_AUTHENTICATED,
         meta: {
             name: 'Karten',
             tab: {
@@ -89,6 +97,7 @@ const routes: RoutesProps = {
         component: LoginPage,
         key: 'LOGIN',
         path: '/settings/login',
+        type: ROUTE_GUEST,
         meta: {
             name: 'Anmelden'
         }
@@ -97,6 +106,7 @@ const routes: RoutesProps = {
         component: RegisterPage,
         key: 'REGISTER',
         path: '/settings/register',
+        type: ROUTE_GUEST,
         meta: {
             name: 'Los geht\'s'
         }
@@ -105,8 +115,18 @@ const routes: RoutesProps = {
         component: PasswordForgotPage,
         key: 'PASSWORD_FORGOT',
         path: '/settings/password-forgot',
+        type: ROUTE_GUEST,
         meta: {
             name: 'Passwort vergessen'
+        }
+    },
+    account: {
+        component: AccountPage,
+        key: 'ACCOUNT',
+        path: '/settings/account',
+        type: ROUTE_AUTHENTICATED,
+        meta: {
+            name: 'Account'
         }
     }
 };

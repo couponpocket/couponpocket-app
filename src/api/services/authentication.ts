@@ -4,7 +4,22 @@ import axios from 'axios';
 export interface UserProperties extends ResourceEntity {
     name: string;
     email: string;
-    role: string;
+    role: 1 | 2 | 3 | 4;
+    isVerified: boolean;
+}
+
+export interface LoginRequest {
+    email?: FormDataEntryValue;
+    password?: FormDataEntryValue;
+}
+
+export interface LoginResponse {
+    user: UserProperties;
+    access_token: string;
+}
+
+export interface LogoutResponse {
+    message: string;
 }
 
 export interface RegisterRequest {
@@ -13,9 +28,9 @@ export interface RegisterRequest {
     password?: FormDataEntryValue;
 }
 
-export type RegisterResponse = Omit<UserProperties, 'role'> & {
+export interface RegisterResponse {
     access_token: string;
-};
+}
 
 export interface VerifyRequest {
     code?: FormDataEntryValue;
@@ -72,6 +87,59 @@ export const resendVerificationEmail = async (token: string) => {
             console.error(e);
             return;
         }
+        throw new ResponseError<ExceptionResponse>(e.message, e.response);
+    }
+}
+
+export const login = async (data: LoginRequest) => {
+    try {
+        const response = await api.post<LoginResponse>('/token', data);
+        return response.data;
+    } catch (e) {
+        if (!axios.isAxiosError(e)) {
+            console.error(e);
+            return;
+        }
+        switch (e.response?.status) {
+            case 422:
+                throw new ResponseError<ValidationExceptionResponse>(e.message, e.response);
+            default:
+                throw new ResponseError<ExceptionResponse>(e.message, e.response);
+        }
+    }
+}
+
+export const logout = async (token: string) => {
+    try {
+        const response = await api.post<LogoutResponse>('/remove-token', null, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+        return response.data;
+    } catch (e) {
+        if (!axios.isAxiosError(e)) {
+            console.error(e);
+            return;
+        }
+
+        throw new ResponseError<ExceptionResponse>(e.message, e.response);
+    }
+}
+
+export const validateToken = async (token: string) => {
+    try {
+        await api.post<LoginResponse>('/validate-token', null, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+    } catch (e) {
+        if (!axios.isAxiosError(e)) {
+            console.error(e);
+            return;
+        }
+
         throw new ResponseError<ExceptionResponse>(e.message, e.response);
     }
 }

@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {User} from '../reducers/authentication';
+import {UserProperties} from '../../api/services/authentication';
 
 const action = {
     LOGIN: 'AUTHENTICATION_LOGIN',
@@ -7,7 +7,7 @@ const action = {
 }
 
 export const login = createAction<{
-    user: User;
+    user: UserProperties;
     token: string;
 }>(action.LOGIN)
 

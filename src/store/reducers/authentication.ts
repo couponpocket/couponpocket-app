@@ -1,14 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {login, logout} from '../actions/authentication';
-
-export interface User {
-    name: string;
-    email: string;
-}
+import {UserProperties} from '../../api/services/authentication';
 
 export interface AuthenticationState {
     token: string | undefined;
-    user: User | undefined;
+    user: UserProperties | undefined;
 }
 
 export const initialAuthenticationState: AuthenticationState = {

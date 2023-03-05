@@ -39,7 +39,7 @@ const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setError
 
     return (
         <>
-            {label === undefined ? (
+            {label !== undefined ? (
                 <IonLabel>
                     {label}
                 </IonLabel>

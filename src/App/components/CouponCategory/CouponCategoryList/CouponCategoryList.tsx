@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 
 import {IonGrid, IonRow} from '@ionic/react';
 import CouponCategory from '../CouponCategory';
 import {useAppSelector} from '../../../../store';
 
 const CouponCategoryList = () => {
-    const categories = useAppSelector(state => state.coupons.categories);
+    const {categories, coupons} = useAppSelector(state => state.coupons);
+
+    const filteredCategories = useMemo(() => {
+        const uniqueCategoriesByCoupons = [...new Set(coupons.map(i => i.coupon_category_id))];
+        return categories.filter(i => uniqueCategoriesByCoupons.includes(i.id));
+    }, [categories, coupons]);
 
     return (
         <IonGrid>
             <IonRow className="coupon-category-list">
-                {categories.map((item, index) => (
+                {filteredCategories.map((item, index) => (
                     <CouponCategory key={index} item={item}/>
                 ))}
             </IonRow>

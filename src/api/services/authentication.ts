@@ -127,13 +127,15 @@ export const logout = async (token: string) => {
     }
 }
 
-export const validateToken = async (token: string) => {
+export const getMyInformation = async (token: string) => {
     try {
-        await api.post<LoginResponse>('/validate-token', null, {
+        const response = await api.get<UserProperties>('/users/me', {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         });
+
+        return response.data;
     } catch (e) {
         if (!axios.isAxiosError(e)) {
             console.error(e);

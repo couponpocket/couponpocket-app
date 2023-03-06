@@ -6,18 +6,26 @@ import routes, {Route as RouteType, ROUTE_AUTHENTICATED, ROUTE_GUEST} from '../.
 import config from '../../../config';
 import {IntlProvider} from 'react-intl';
 import {useAppDispatch, useAppSelector} from '../../../store';
-import {validateToken} from '../../../api/services/authentication';
+import {getMyInformation} from '../../../api/services/authentication';
 import {ResponseError} from '../../../api';
-import {logout as logoutAction} from '../../../store/actions/authentication';
+import {logout as logoutAction, updateUser as updateUserAction} from '../../../store/actions/authentication';
 
 const Navigator: FC = () => {
     const routerRef = useRef<HTMLIonRouterOutletElement>(null);
     const {user, token} = useAppSelector(state => state.authentication);
     const dispatch = useAppDispatch();
 
-    const checkSession = useCallback(async (token: string) => {
+    const updateSession = useCallback(async (token: string) => {
         try {
-            await validateToken(token);
+            const user = await getMyInformation(token);
+
+            // no user information found
+            if (!user) {
+                dispatch(logoutAction());
+                return;
+            }
+
+            dispatch(updateUserAction(user));
         } catch (e) {
             if (!(e instanceof ResponseError)) {
                 console.log(e);
@@ -33,12 +41,12 @@ const Navigator: FC = () => {
             return;
         }
 
-        checkSession(token).then();
+        updateSession(token).then();
 
-        const interval = setInterval(() => checkSession(token), 10 * 1000);
+        const interval = setInterval(() => updateSession(token), 10 * 1000);
 
         return () => clearInterval(interval);
-    }, [checkSession, token])
+    }, [updateSession, token])
 
     const [navigation] = useState<RouteType[]>(Object.values(routes));
     const tabs = useMemo(() => {

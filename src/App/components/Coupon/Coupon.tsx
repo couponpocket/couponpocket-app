@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {IonCard, IonCardContent, IonCardHeader, IonText} from '@ionic/react';
 import {CouponProperties} from '../../../api/services/coupons';
-import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
+import {CodeType, CouponCategoryProperties} from '../../../api/services/coupon-categories';
 import {FormattedDate} from 'react-intl';
 
 import './Coupon.css';
@@ -36,7 +36,10 @@ const Coupon: FC<CouponProps> = ({item, partner}) => (
             </div>
             <div className="coupon-card-barcode">
                 <Barcode value={item.ean}
-                         format={item.ean.length === 13 ? 'ean13' : 'code128'}/>
+                         format={
+                             partner.code_type === CodeType.EAN13 ? 'ean13' :
+                                 partner.code_type === CodeType.QR ? 'qrcode' : 'code128'
+                         }/>
             </div>
             <div className="coupon-card-valid-till">
                 Gültig bis <FormattedDate value={item.valid_till} dateStyle="medium"/>

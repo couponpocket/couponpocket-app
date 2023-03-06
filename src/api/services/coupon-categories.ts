@@ -1,6 +1,6 @@
 import api, {ResourceEntity} from '../index'
 
-export enum CodeStyle {
+export enum CodeType {
     CODE128 = 1,
     EAN13,
     QR
@@ -10,7 +10,7 @@ export interface CouponCategoryProperties extends ResourceEntity {
     name: string;
     color_background: string;
     color_foreground: string;
-    code_style: CodeStyle;
+    code_type: CodeType;
 }
 
 type CouponCategoriesResponse = CouponCategoryProperties[];

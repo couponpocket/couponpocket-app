@@ -1,4 +1,4 @@
 export interface NavigatorProps {
-    title: string,
-    router: HTMLIonRouterOutletElement
+    title: string;
+    router: HTMLIonRouterOutletElement;
 }

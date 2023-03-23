@@ -1,18 +1,28 @@
-import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
+import React, {
+    Dispatch,
+    FC,
+    isValidElement,
+    PropsWithChildren,
+    ReactChild,
+    ReactElement, SetStateAction,
+    useEffect,
+    useState
+} from 'react';
 import {IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from '@ionic/react';
 
-type NavigatorModalProps = PropsWithChildren<{
-    title?: ReactChild,
+export type NavigatorModalProps = PropsWithChildren<{
+    title?: ReactChild;
     buttons?: {
-        start?: ReactElement,
-        end?: ReactElement
-    } | ReactElement,
-    headerChildren?: ReactElement
-    router?: HTMLIonRouterOutletElement,
-    showModal: boolean,
-    setShowModal: (state: boolean) => void,
-    modalClassName?: string,
-    contentClassName?: string
+        start?: ReactElement;
+        end?: ReactElement;
+    } | ReactElement;
+    headerChildren?: ReactElement;
+    router?: HTMLIonRouterOutletElement;
+    showModal: boolean;
+    setShowModal: Dispatch<SetStateAction<boolean>>;
+    modalClassName?: string;
+    contentClassName?: string;
+    backdropDismiss?: boolean;
 }>
 
 const NavigatorModal: FC<NavigatorModalProps> = ({
@@ -24,7 +34,8 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
     showModal,
     setShowModal,
     modalClassName,
-    contentClassName
+    contentClassName,
+    backdropDismiss
 }) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
@@ -53,10 +64,11 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
 
     return (
         <IonModal isOpen={showModal}
-                  swipeToClose
+                  swipeToClose={true}
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}
+                  backdropDismiss={backdropDismiss}
             >
             <IonHeader translucent={true}>
                 <IonToolbar>

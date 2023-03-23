@@ -5,10 +5,12 @@ import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import CapacitorStorage from 'redux-persist-capacitor';
 
 import couponReducer, {CouponsState} from './reducers/coupons';
+import authenticationReducer, {AuthenticationState} from './reducers/authentication';
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from 'redux-persist/es/constants';
 
 export interface AppState {
-    coupons: CouponsState
+    coupons: CouponsState;
+    authentication: AuthenticationState;
 }
 
 const persistConfig = {
@@ -19,7 +21,8 @@ const persistConfig = {
 
 const store = configureStore({
     reducer: persistCombineReducers<AppState>(persistConfig, {
-        coupons: couponReducer
+        coupons: couponReducer,
+        authentication: authenticationReducer
     }),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: {

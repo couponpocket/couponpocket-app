@@ -14,13 +14,13 @@ import CouponWatchlistModal from '../components/CouponWatchlistModal/CouponWatch
 import {RouteComponentProps} from 'react-router';
 
 interface MatchProps {
-    id: string
+    id: string;
 }
 
 type CouponPage = NavigatorProps & RouteComponentProps<MatchProps>;
 
 const CouponPage: FC<CouponPage> = ({router, match}) => {
-    const [watchlist, setWatchlist] = useState<number[]>([]);
+    const [watchlist, setWatchlist] = useState<string[]>([]);
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
 
     const partner = categories.find((item) => item.id.toString() === match.params.id);
 
-    const toggleItem = useCallback((ean: number) => {
+    const toggleItem = useCallback((ean: string) => {
         if (watchlist.includes(ean)) {
             setWatchlist(watchlist.filter(item => ean !== item));
         } else {
@@ -41,8 +41,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
     }
 
     return (
-        <NavigatorPage title={partner.name} className="coupons" collapse={true}
-                       buttons={<NavigatorBackButton text="Coupons"/>}>
+        <NavigatorPage title={partner.name} className="coupons" buttons={<NavigatorBackButton text="Coupons"/>}>
             <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(dispatch, () => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>

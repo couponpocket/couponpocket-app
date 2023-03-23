@@ -2,8 +2,8 @@ import React, {FC} from 'react';
 import {IonBackButton, isPlatform} from '@ionic/react';
 
 interface NavigatorBackButtonProps {
-    defaultHref?: string,
-    text?: string
+    defaultHref?: string;
+    text?: string;
 }
 
 const NavigatorBackButton: FC<NavigatorBackButtonProps> = ({defaultHref = undefined, text = undefined, ...props}) => {

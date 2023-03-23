@@ -8,13 +8,13 @@ import {CouponProperties} from '../../../../api/services/coupons';
 import './couponList.css';
 
 interface CouponListProps {
-    partner: CouponCategoryProperties,
-    watchlist: number[],
-    toggleItem: (ean: number) => void
+    partner: CouponCategoryProperties;
+    watchlist: string[];
+    toggleItem: (ean: string) => void;
 }
 
 interface CouponGroupList {
-    [x: string]: CouponProperties[]
+    [x: string]: CouponProperties[];
 }
 
 const CouponList: FC<CouponListProps> = ({partner, watchlist, toggleItem}) => {

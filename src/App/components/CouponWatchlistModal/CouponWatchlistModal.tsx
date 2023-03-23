@@ -6,16 +6,14 @@ import {closeOutline, closeSharp} from 'ionicons/icons';
 import Coupon from '../Coupon/Coupon';
 
 import './CouponWatchlistModal.css';
-import NavigatorModal from '../Navigator/NavigatorModal';
+import NavigatorModal, {NavigatorModalProps} from '../Navigator/NavigatorModal';
 import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
 import {useAppSelector} from '../../../store';
 
-interface WatchlistModal {
-    router: HTMLIonRouterOutletElement,
-    showModal: boolean,
-    setShowModal: (x: boolean) => void,
-    partner: CouponCategoryProperties,
-    watchlist: number[]
+interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
+    router: NavigatorModalProps['router'];
+    partner: CouponCategoryProperties;
+    watchlist: string[];
 }
 
 const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowModal, partner, watchlist}) => {

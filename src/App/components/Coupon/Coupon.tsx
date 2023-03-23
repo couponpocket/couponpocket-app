@@ -1,17 +1,15 @@
 import React, {FC} from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Barcode from 'react-barcode';
 import {IonCard, IonCardContent, IonCardHeader, IonText} from '@ionic/react';
 import {CouponProperties} from '../../../api/services/coupons';
-import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
+import {CodeType, CouponCategoryProperties} from '../../../api/services/coupon-categories';
 import {FormattedDate} from 'react-intl';
 
 import './Coupon.css';
+import Barcode from './Barcode';
 
 interface CouponProps {
-    item: CouponProperties,
-    partner: CouponCategoryProperties
+    item: CouponProperties;
+    partner: CouponCategoryProperties;
 }
 
 const Coupon: FC<CouponProps> = ({item, partner}) => (
@@ -32,15 +30,19 @@ const Coupon: FC<CouponProps> = ({item, partner}) => (
                 <div className="coupon-card-condition">
                     {item.condition}
                 </div>
-                <div className="coupon-card-valid-till">
-                    Bis <FormattedDate value={item.valid_till} dateStyle="medium"/>
-                </div>
                 <div className="coupon-card-source">
                     Quelle: {item.source}
                 </div>
             </div>
             <div className="coupon-card-barcode">
-                <Barcode value={item.ean.toString()} renderer="svg"/>
+                <Barcode value={item.ean}
+                         format={
+                             partner.code_type === CodeType.EAN13 ? 'ean13' :
+                                 partner.code_type === CodeType.QR ? 'qrcode' : 'code128'
+                         }/>
+            </div>
+            <div className="coupon-card-valid-till">
+                Gültig bis <FormattedDate value={item.valid_till} dateStyle="medium"/>
             </div>
         </IonCardContent>
     </IonCard>

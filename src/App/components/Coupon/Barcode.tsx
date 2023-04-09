@@ -20,7 +20,11 @@ const Barcode: FC<BarcodeProps> = ({value, format = 'code128'}) => {
             height: 15,
             paddingheight: 10,
             paddingwidth: 10,
-            includetext: true
+            includetext: true,
+            ...(format === 'qrcode' ? {
+                alttext: value,
+                textsize: 7
+            } : {})
         });
     }, [canvas, format, value])
 

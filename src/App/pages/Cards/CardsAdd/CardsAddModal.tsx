@@ -11,7 +11,7 @@ interface CardsAddModal extends Pick<NavigatorModalProps, 'showModal' | 'setShow
 const CardsAddModal: FC<CardsAddModal> = ({router, showModal, setShowModal}) => {
     return (
         <IonModal isOpen={showModal}
-                  swipeToClose={true}
+                  canDismiss={true}
                   presentingElement={router}
                   onDidDismiss={() => setShowModal(false)}
                   className="cards-add-modal">

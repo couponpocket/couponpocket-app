@@ -29,7 +29,8 @@ const NavigatorPage: FC<NavigatorPageProps> = ({
             <NavigatorContent title={title}
                               buttons={buttons}
                               collapse={collapse}
-                              headerChildren={headerChildren}>
+                              headerChildren={headerChildren}
+                              fullscreen={true}>
                 {children}
             </NavigatorContent>
         </IonPage>

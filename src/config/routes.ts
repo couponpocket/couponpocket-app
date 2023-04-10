@@ -2,7 +2,7 @@ import {FC} from 'react';
 import CouponCategoryPage from '../App/pages/CouponCategoryPage';
 import {albumsOutline, albumsSharp, barcodeOutline, barcodeSharp, cog, cogSharp} from 'ionicons/icons';
 import CouponPage from '../App/pages/CouponPage';
-import CardsPage from '../App/pages/CardsPage';
+import CardsPage from '../App/pages/Cards/CardsPage';
 import SettingsPage from '../App/pages/Settings/SettingsPage';
 import LoginPage from '../App/pages/Settings/Authentication/LoginPage';
 import RegisterPage from '../App/pages/Settings/Authentication/RegisterPage';

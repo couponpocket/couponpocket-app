@@ -12,13 +12,17 @@ type NavigatorContentProps = PropsWithChildren<{
         top?: ReactElement;
         bottom?: ReactElement;
     } | ReactElement;
+    fullscreen?: boolean;
 }>
 
 
 const NavigatorContent: FC<NavigatorContentProps> = ({
-    children, title, buttons = undefined,
+    children,
+    title,
+    buttons = undefined,
     collapse = true,
-    headerChildren
+    headerChildren,
+    fullscreen = false
 }) => {
     const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
     const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
@@ -71,7 +75,7 @@ const NavigatorContent: FC<NavigatorContentProps> = ({
                 </IonToolbar>
                 {topHeaderChildren ? <IonToolbar>{topHeaderChildren}</IonToolbar> : null}
             </IonHeader>
-            <IonContent fullscreen={true}>
+            <IonContent fullscreen={fullscreen}>
                 {collapse ? (
                     <IonHeader collapse="condense">
                         <IonToolbar>

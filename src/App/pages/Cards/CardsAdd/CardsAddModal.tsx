@@ -1,0 +1,24 @@
+import React, {FC} from 'react';
+import {NavigatorModalProps} from '../../../components/Navigator/NavigatorModal';
+import {IonModal, IonNav} from '@ionic/react';
+import CardsAddCategory from './Navigator/CardsAddCategory';
+
+interface CardsAddModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
+    router: NavigatorModalProps['router'];
+}
+
+
+const CardsAddModal: FC<CardsAddModal> = ({router, showModal, setShowModal}) => {
+    return (
+        <IonModal isOpen={showModal}
+                  swipeToClose={true}
+                  presentingElement={router}
+                  onDidDismiss={() => setShowModal(false)}
+                  className="cards-add-modal">
+            <IonNav root={() => <CardsAddCategory/>}></IonNav>
+        </IonModal>
+
+    )
+}
+
+export default CardsAddModal;

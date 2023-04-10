@@ -29,9 +29,6 @@ const CouponItem: FC<CouponItemProps> = ({item, checked, toggleItem}) => {
                 <IonText className="coupon-condition">
                     {item.condition}
                 </IonText>
-                <IonText className="coupon-ean">
-                    Code: {item.ean}
-                </IonText>
                 <IonText className="coupon-source">
                     Quelle: {item.source}
                 </IonText>

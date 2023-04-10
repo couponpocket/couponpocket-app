@@ -1,14 +1,13 @@
 import React, {
     Dispatch,
     FC,
-    isValidElement,
     PropsWithChildren,
     ReactChild,
-    ReactElement, SetStateAction,
-    useEffect,
-    useState
+    ReactElement,
+    SetStateAction
 } from 'react';
-import {IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar} from '@ionic/react';
+import {IonModal} from '@ionic/react';
+import NavigatorContent from './NavigatorContent';
 
 export type NavigatorModalProps = PropsWithChildren<{
     title?: ReactChild;
@@ -29,58 +28,23 @@ const NavigatorModal: FC<NavigatorModalProps> = ({
     children,
     title,
     buttons,
-    headerChildren: headerChildrenProp,
+    headerChildren,
     router,
     showModal,
     setShowModal,
     modalClassName,
-    contentClassName,
     backdropDismiss
 }) => {
-    const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
-    const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
-
-    const [headerChildren, setHeaderChildren] = useState<ReactElement | undefined>(undefined);
-
-    useEffect(() => {
-        if (isValidElement(buttons)) {
-            setStartButtons(buttons);
-        } else {
-            if (buttons?.start) {
-                setStartButtons(buttons.start);
-            }
-
-            if (buttons?.end) {
-                setEndButtons(buttons.end);
-            }
-        }
-    }, [buttons]);
-
-    useEffect(() => {
-        if (isValidElement(headerChildrenProp)) {
-            setHeaderChildren(headerChildrenProp);
-        }
-    }, [headerChildrenProp]);
-
     return (
         <IonModal isOpen={showModal}
                   swipeToClose={true}
                   presentingElement={router || undefined}
                   onDidDismiss={() => setShowModal(false)}
                   className={modalClassName}
-                  backdropDismiss={backdropDismiss}
-            >
-            <IonHeader translucent={true}>
-                <IonToolbar>
-                    {startButtons ? <IonButtons slot="start">{startButtons}</IonButtons> : null}
-                    {endButtons ? <IonButtons slot="end">{endButtons}</IonButtons> : null}
-                    <IonTitle>{title}</IonTitle>
-                </IonToolbar>
-                {headerChildren ? <IonToolbar>{headerChildren}</IonToolbar> : null}
-            </IonHeader>
-            <IonContent className={contentClassName}>
+                  backdropDismiss={backdropDismiss}>
+            <NavigatorContent title={title} collapse={false} buttons={buttons} headerChildren={{top: headerChildren}}>
                 {children}
-            </IonContent>
+            </NavigatorContent>
         </IonModal>
     )
 }

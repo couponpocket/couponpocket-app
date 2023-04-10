@@ -61,7 +61,7 @@ const routes: RoutesProps = {
         path: '/categories/:id',
         exact: true
     },
-    cards: {
+    cardsList: {
         component: CardsPage,
         key: 'CARDS',
         path: '/cards',

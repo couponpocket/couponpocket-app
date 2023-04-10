@@ -1,9 +1,9 @@
+import {FC} from 'react';
 import CouponCategoryPage from '../App/pages/CouponCategoryPage';
 import {albumsOutline, albumsSharp, barcodeOutline, barcodeSharp, cog, cogSharp} from 'ionicons/icons';
 import CouponPage from '../App/pages/CouponPage';
 import CardsPage from '../App/pages/CardsPage';
 import SettingsPage from '../App/pages/Settings/SettingsPage';
-import {FC} from 'react';
 import LoginPage from '../App/pages/Settings/Authentication/LoginPage';
 import RegisterPage from '../App/pages/Settings/Authentication/RegisterPage';
 import PasswordForgotPage from '../App/pages/Settings/Authentication/PasswordForgotPage';

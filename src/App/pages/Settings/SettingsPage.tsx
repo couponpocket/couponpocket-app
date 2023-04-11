@@ -12,7 +12,7 @@ import {
     phonePortrait,
     phonePortraitSharp, shareSocial, shareSocialSharp, star, starSharp
 } from 'ionicons/icons';
-import SettingsItem from '../../components/Settings/SettingsItem/SettingsItem';
+import SettingsItem from '../../components/Settings/SettingsItem';
 import routes from '../../../config/routes';
 import {App} from '@capacitor/app';
 import {RateApp} from 'capacitor-rate-app';

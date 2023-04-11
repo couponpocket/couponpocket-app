@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef} from 'react';
+import React, {FC, useEffect, useMemo, useRef} from 'react';
 
 import {IonButton, IonIcon, IonSlide, IonSlides} from '@ionic/react';
 import {closeOutline, closeSharp} from 'ionicons/icons';
@@ -9,6 +9,7 @@ import './CouponWatchlistModal.css';
 import NavigatorModal, {NavigatorModalProps} from '../../../components/Navigator/NavigatorModal';
 import {CouponCategoryProperties} from '../../../../api/services/coupon-categories';
 import {useAppSelector} from '../../../../store';
+import Card from '../../../components/Coupons/Watchlist/Card';
 
 interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
     router: NavigatorModalProps['router'];
@@ -20,6 +21,13 @@ const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowMod
     const slider = useRef<HTMLIonSlidesElement>(null);
 
     const coupons = useAppSelector(state => state.coupons.coupons.filter(item => watchlist.includes(item.ean)));
+    const {cards, cardTypes} = useAppSelector(state => state.cards);
+
+    const relevantCards = useMemo(() => {
+        const relevantCardTypes = cardTypes.filter(el => el.coupon_category_id === partner.id || el.coupon_category_id === null);
+
+        return cards.filter(el => relevantCardTypes.find(rct => rct.id === el.card_type_id));
+    }, [cardTypes, cards, partner.id])
 
     useEffect(() => {
         if (!showModal) {
@@ -46,6 +54,12 @@ const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowMod
                 {coupons.map((item) => (
                     <IonSlide key={item.ean} className="watchlist-slide">
                         <Coupon item={item} partner={partner}/>
+                    </IonSlide>
+                ))}
+
+                {relevantCards.map(item => (
+                    <IonSlide key={item.number} className="watchlist-slide">
+                        <Card item={item}/>
                     </IonSlide>
                 ))}
             </IonSlides>

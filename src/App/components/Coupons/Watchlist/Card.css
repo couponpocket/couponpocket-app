@@ -1,0 +1,38 @@
+/** COUPON CARD */
+.card-card {
+    --ion-card-color: #000000;
+    width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card-card {
+        --ion-card-color: #FFFFFF;
+    }
+}
+
+/* CARD HEADER */
+.card-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.card-card-header-name {
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.card-card-barcode {
+     width: 100%;
+     background: white;
+     border-radius: 5px;
+     margin-top: 10px;
+}
+
+.card-card-barcode svg {
+    width: 100%;
+}

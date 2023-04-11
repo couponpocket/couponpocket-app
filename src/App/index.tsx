@@ -2,9 +2,10 @@ import React from 'react';
 import {IonApp, setupIonicReact} from '@ionic/react';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
+import store, {persistor} from '../store';
 
 import {syncCoupons} from '../helpers/coupons';
-import store, {persistor} from '../store';
+import {syncCards} from '../helpers/cards';
 
 import Navigator from './components/Navigator/Navigator';
 
@@ -30,6 +31,7 @@ import './theme/variables.css';
 const loadInitialValues = async () => {
     try {
         await syncCoupons(store.dispatch);
+        await syncCards(store.getState().authentication.token, store.dispatch);
     } catch (e) {
         console.log(e);
     }

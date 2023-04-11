@@ -9,7 +9,7 @@ import {
 } from '@ionic/react';
 
 import './CouponItem.css';
-import {CouponProperties} from '../../../../api/services/coupons';
+import {CouponProperties} from '../../../api/services/coupons';
 import {FormattedDate} from 'react-intl';
 
 interface CouponItemProps {

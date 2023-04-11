@@ -1,13 +1,13 @@
 import React, {FC} from 'react';
 import {IonCol, IonCard, IonCardTitle} from '@ionic/react';
-import './CouponCategory.css';
+import './CouponCategoryItem.css';
 import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
 
 interface CouponCategoryProps {
     item: CouponCategoryProperties;
 }
 
-const CouponCategory: FC<CouponCategoryProps> = ({item, ...htmlProps}) => {
+const CouponCategoryItem: FC<CouponCategoryProps> = ({item, ...htmlProps}) => {
     const link = (id: string) => {
         return '/categories/' + id
     }
@@ -27,4 +27,4 @@ const CouponCategory: FC<CouponCategoryProps> = ({item, ...htmlProps}) => {
     );
 };
 
-export default CouponCategory;
+export default CouponCategoryItem;

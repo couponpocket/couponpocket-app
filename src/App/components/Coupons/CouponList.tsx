@@ -1,9 +1,9 @@
 import React, {FC, useMemo} from 'react';
 import {IonList, IonItemGroup, IonListHeader, IonLabel} from '@ionic/react';
-import CouponItem from '../CouponItem/CouponItem';
-import {useAppSelector} from '../../../../store';
-import {CouponCategoryProperties} from '../../../../api/services/coupon-categories';
-import {CouponProperties} from '../../../../api/services/coupons';
+import CouponItem from './CouponItem';
+import {useAppSelector} from '../../../store';
+import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
+import {CouponProperties} from '../../../api/services/coupons';
 
 import './couponList.css';
 

@@ -3,12 +3,12 @@ import React, {FC, useEffect, useRef} from 'react';
 import {IonButton, IonIcon, IonSlide, IonSlides} from '@ionic/react';
 import {closeOutline, closeSharp} from 'ionicons/icons';
 
-import Coupon from '../Coupon/Coupon';
+import Coupon from '../../../components/Coupons/Watchlist/Coupon';
 
 import './CouponWatchlistModal.css';
-import NavigatorModal, {NavigatorModalProps} from '../Navigator/NavigatorModal';
-import {CouponCategoryProperties} from '../../../api/services/coupon-categories';
-import {useAppSelector} from '../../../store';
+import NavigatorModal, {NavigatorModalProps} from '../../../components/Navigator/NavigatorModal';
+import {CouponCategoryProperties} from '../../../../api/services/coupon-categories';
+import {useAppSelector} from '../../../../store';
 
 interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
     router: NavigatorModalProps['router'];

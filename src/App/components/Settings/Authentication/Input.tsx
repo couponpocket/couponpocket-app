@@ -16,11 +16,12 @@ interface InputProps {
     type?: TextFieldTypes;
     errors: ErrorState | undefined;
     setErrors: Dispatch<SetStateAction<ErrorState | undefined>>;
+    inputmode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
 }
 
 type inputChange = (event: IonInputCustomEvent<InputChangeEventDetail>) => void;
 
-const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setErrors}) => {
+const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setErrors, inputmode}) => {
     const inputChange: inputChange = useCallback((e) => {
         e.preventDefault();
 
@@ -45,7 +46,8 @@ const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setError
                 </IonLabel>
             ) : null}
             <div className="input-field">
-                <IonInput onIonChange={inputChange} type={type} name={name} placeholder={placeholder}/>
+                <IonInput inputmode={inputmode} onIonChange={inputChange} type={type} name={name}
+                          placeholder={placeholder}/>
             </div>
             {errors && Object.keys(errors).includes(name) ? (
                 <IonText color="danger">{errors[name].toString()}</IonText>

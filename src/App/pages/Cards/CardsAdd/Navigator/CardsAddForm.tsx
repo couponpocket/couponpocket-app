@@ -61,7 +61,7 @@ const CardsAddCategory: FC<CardsAddCategory> = ({cardType, setShowModal}) => {
                     await showToast('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
             }
         }
-    }, [cardType, setShowModal, showToast, token, user])
+    }, [cardType, dispatch, setShowModal, showToast, token, user])
 
     return (
         <NavigatorContent title={cardType.name} collapse={false} buttons={<NavigatorBackButton/>}>

@@ -15,7 +15,7 @@ const CardsAddModal: FC<CardsAddModal> = ({router, showModal, setShowModal}) => 
                   presentingElement={router}
                   onDidDismiss={() => setShowModal(false)}
                   className="cards-add-modal">
-            <IonNav root={() => <CardsAddCategory/>}></IonNav>
+            <IonNav root={() => <CardsAddCategory setShowModal={setShowModal}/>}></IonNav>
         </IonModal>
 
     )

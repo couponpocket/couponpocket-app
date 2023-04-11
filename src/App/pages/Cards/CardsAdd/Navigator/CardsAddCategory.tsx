@@ -1,32 +1,64 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useMemo} from 'react';
 import NavigatorContent from '../../../../components/Navigator/NavigatorContent';
-import {CardTypeProperty, getCardTypes} from '../../../../../api/services/card-types';
 import {useAppSelector} from '../../../../../store';
-import {IonItem, IonList} from '@ionic/react';
+import {
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonIcon,
+    IonItem,
+    IonList,
+    IonNavLink
+} from '@ionic/react';
+import {closeCircleOutline, closeCircleSharp, closeOutline, closeSharp} from 'ionicons/icons';
+import {NavigatorModalProps} from '../../../../components/Navigator/NavigatorModal';
+import CardsAddForm from './CardsAddForm';
 
-const CardsAddCategory: FC = () => {
-    const token = useAppSelector(state => state.authentication.token);
+import './CardAddCategory.css';
+import {AppLauncher} from '@capacitor/app-launcher';
 
-    const [cardTypes, setCardTypes] = useState<CardTypeProperty[]>([]);
+type CardsAddCategory = Pick<NavigatorModalProps, 'setShowModal'>;
 
-    useEffect(() => {
-        (async () => {
-            if (!token) {
-                return () => setCardTypes([]);
-            }
-            setCardTypes(await getCardTypes(token));
-        })()
-        return () => setCardTypes([]);
-    }, [token]);
+const CardsAddCategory: FC<CardsAddCategory> = ({setShowModal}) => {
+    const {cards, cardTypes} = useAppSelector(state => state.cards);
+
+    const filteredCardTypes = useMemo(() => cardTypes.filter(ct => !cards.find(c => c.card_type_id === ct.id)), [cardTypes, cards])
 
     return (
-        <NavigatorContent title="Karte hinzufügen" collapse={false}>
+        <NavigatorContent title="Karte hinzufügen" collapse={false} buttons={{
+            end: (
+                <IonButton onClick={() => setShowModal(false)}>
+                    <IonIcon ios={closeOutline} md={closeSharp}/>
+                </IonButton>
+            )
+        }}>
             <IonList>
-                {cardTypes.map(i => (
-                    <IonItem key={i.id}>
-                        {i.name}
-                    </IonItem>
-                ))}
+                {filteredCardTypes.length ? filteredCardTypes.map(i => (
+                    <IonNavLink key={i.id} component={() => <CardsAddForm cardType={i} setShowModal={setShowModal}/>}>
+                        <IonItem detail={true} button={true}>
+                            {i.name}
+                        </IonItem>
+                    </IonNavLink>
+                )) : (
+                    <IonCard>
+                        <div className="card-add-category-empty">
+                            <IonIcon className="card-add-category-empty-icon" ios={closeCircleOutline}
+                                     md={closeCircleSharp}/>
+                        </div>
+                        <IonCardHeader>
+                            <IonCardTitle>Kein Kartentyp verfügbar</IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            Du hast bereits alle verfügbaren Kartentypen in deinem Profil hinzugefügt.
+                        </IonCardContent>
+                        <IonButton fill="clear"
+                                   onClick={async () => await AppLauncher.openUrl({url: 'mailto:support@couponpocket.de'})}>
+                            Neuen Kartentyp vorschlagen
+                        </IonButton>
+                    </IonCard>
+                )}
             </IonList>
         </NavigatorContent>
     )

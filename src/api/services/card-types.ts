@@ -1,11 +1,11 @@
 import api, {ResourceEntity} from '../index'
 
-export interface CardTypeProperty extends ResourceEntity {
+export interface CardTypeProperties extends ResourceEntity {
     name: string;
     coupon_category_id: string;
 }
 
-type CardTypesResponse = CardTypeProperty[];
+type CardTypesResponse = CardTypeProperties[];
 
 export const getCardTypes = async (token: string): Promise<CardTypesResponse> => {
     const response = await api.get<CardTypesResponse>('/card-types', {

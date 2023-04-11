@@ -14,6 +14,7 @@ import {ResponseError} from '../../../../api';
 import useToast from '../../../hooks/useToast';
 import {useAppDispatch} from '../../../../store';
 import {login as loginAction} from '../../../../store/actions/authentication';
+import {syncCards} from '../../../../helpers/cards';
 
 type LoginPageProps = NavigatorProps;
 
@@ -40,6 +41,7 @@ const LoginPage: FC<LoginPageProps> = ({title}) => {
                 user: response.user,
                 token: response.access_token
             }));
+            await syncCards(response.access_token, dispatch);
             await showToast('Du hast dich erfolgreich angemeldet!');
         } catch (e) {
             if (!(e instanceof ResponseError)) {

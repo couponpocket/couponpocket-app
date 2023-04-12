@@ -8,7 +8,7 @@ export interface CardTypeProperties extends ResourceEntity {
 type CardTypesResponse = CardTypeProperties[];
 
 export const getCardTypes = async (token: string): Promise<CardTypesResponse> => {
-    const response = await api.get<CardTypesResponse>('/card-types', {
+    const response = await api.get<CardTypesResponse>('/card-types?sortKey=name', {
         headers: {
             Authorization: 'Bearer ' + token
         }

@@ -11,9 +11,9 @@
 
 /* CARD HEADER */
 .coupon-card-header {
-    display: flex;
     justify-content: space-between;
     align-items: baseline;
+    flex-direction: row;
 }
 
 .coupon-card-header-points {
@@ -58,10 +58,12 @@
 }
 
 .coupon-card-barcode {
-     width: 100%;
-     background: white;
-     border-radius: 5px;
-     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .coupon-card-barcode svg {

@@ -1,15 +1,20 @@
 import React, {FC, useEffect, useMemo, useRef} from 'react';
 
-import {IonButton, IonIcon, IonSlide, IonSlides} from '@ionic/react';
+import {IonButton, IonIcon} from '@ionic/react';
 import {closeOutline, closeSharp} from 'ionicons/icons';
 
-import Coupon from '../../../components/Coupons/Watchlist/Coupon';
+import {Pagination} from "swiper";
+import {Swiper, SwiperSlide, SwiperRef} from "swiper/react";
 
-import './CouponWatchlistModal.css';
+import Coupon from '../../../components/Coupons/Watchlist/Coupon';
+import Card from '../../../components/Coupons/Watchlist/Card';
+
 import NavigatorModal, {NavigatorModalProps} from '../../../components/Navigator/NavigatorModal';
 import {CouponCategoryProperties} from '../../../../api/services/coupon-categories';
 import {useAppSelector} from '../../../../store';
-import Card from '../../../components/Coupons/Watchlist/Card';
+
+import './CouponWatchlistModal.css';
+import "swiper/swiper-bundle.min.css";
 
 interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setShowModal'> {
     router: NavigatorModalProps['router'];
@@ -18,7 +23,7 @@ interface WatchlistModal extends Pick<NavigatorModalProps, 'showModal' | 'setSho
 }
 
 const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowModal, partner, watchlist}) => {
-    const slider = useRef<HTMLIonSlidesElement>(null);
+    const slider = useRef<SwiperRef>(null);
 
     const coupons = useAppSelector(state => state.coupons.coupons.filter(item => watchlist.includes(item.ean)));
     const {cards, cardTypes} = useAppSelector(state => state.cards);
@@ -30,11 +35,17 @@ const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowMod
     }, [cardTypes, cards, partner.id])
 
     useEffect(() => {
-        if (!showModal) {
+        if (!(showModal && slider.current)) {
             return;
         }
 
-        slider.current?.update();
+        const {swiper} = slider.current;
+
+        if (!swiper) {
+            return;
+        }
+
+        swiper.update();
     }, [showModal]);
 
     return (
@@ -50,19 +61,22 @@ const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowMod
                                 </IonButton>
                             )
                         }}>
-            <IonSlides ref={slider} className="watchlist-slide-list" pager={true}>
+            <Swiper ref={slider} className="watchlist-slide-list"
+                    modules={[Pagination]}
+                    pagination={{clickable: true}}
+                    initialSlide={0}>
                 {coupons.map((item) => (
-                    <IonSlide key={item.ean} className="watchlist-slide">
+                    <SwiperSlide key={item.ean} className="watchlist-slide">
                         <Coupon item={item} partner={partner}/>
-                    </IonSlide>
+                    </SwiperSlide>
                 ))}
 
                 {relevantCards.map(item => (
-                    <IonSlide key={item.number} className="watchlist-slide">
+                    <SwiperSlide key={item.number} className="watchlist-slide">
                         <Card item={item}/>
-                    </IonSlide>
+                    </SwiperSlide>
                 ))}
-            </IonSlides>
+            </Swiper>
         </NavigatorModal>
     );
 };

@@ -9,7 +9,7 @@ import {
 } from '@ionic/react';
 
 import './CouponItem.css';
-import {CouponProperties} from '../../../../api/services/coupons';
+import {CouponProperties} from '../../../api/services/coupons';
 import {FormattedDate} from 'react-intl';
 
 interface CouponItemProps {
@@ -28,9 +28,6 @@ const CouponItem: FC<CouponItemProps> = ({item, checked, toggleItem}) => {
                 </IonText>
                 <IonText className="coupon-condition">
                     {item.condition}
-                </IonText>
-                <IonText className="coupon-ean">
-                    Code: {item.ean}
                 </IonText>
                 <IonText className="coupon-source">
                     Quelle: {item.source}

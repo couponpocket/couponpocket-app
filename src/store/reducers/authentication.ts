@@ -1,4 +1,4 @@
-import {createReducer} from '@reduxjs/toolkit';
+import {createReducer, current} from '@reduxjs/toolkit';
 import {login, logout, updateUser} from '../actions/authentication';
 import {UserProperties} from '../../api/services/authentication';
 
@@ -14,7 +14,7 @@ export const initialAuthenticationState: AuthenticationState = {
 
 export default createReducer(initialAuthenticationState, builder => {
     builder.addCase(updateUser, (state, action) => {
-        if (state.user === action.payload) {
+        if (JSON.stringify(current(state.user)) === JSON.stringify(action.payload)) {
             return;
         }
 

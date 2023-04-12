@@ -52,7 +52,7 @@ const Navigator: FC = () => {
     const tabs = useMemo(() => {
         const items = [
             routes.categoryList,
-            (user ? routes.cards : undefined),
+            (user ? routes.cardsList : undefined),
             routes.settings
         ];
         return items.filter(item => item !== undefined);

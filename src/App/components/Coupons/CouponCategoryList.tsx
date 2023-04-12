@@ -1,8 +1,8 @@
 import React, {useMemo} from 'react';
 
 import {IonGrid, IonRow} from '@ionic/react';
-import CouponCategory from '../CouponCategory';
-import {useAppSelector} from '../../../../store';
+import CouponCategoryItem from './CouponCategoryItem';
+import {useAppSelector} from '../../../store';
 
 const CouponCategoryList = () => {
     const {categories, coupons} = useAppSelector(state => state.coupons);
@@ -16,7 +16,7 @@ const CouponCategoryList = () => {
         <IonGrid>
             <IonRow className="coupon-category-list">
                 {filteredCategories.map((item, index) => (
-                    <CouponCategory key={index} item={item}/>
+                    <CouponCategoryItem key={index} item={item}/>
                 ))}
             </IonRow>
         </IonGrid>

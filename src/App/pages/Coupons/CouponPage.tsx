@@ -2,15 +2,15 @@ import React, {FC, useCallback, useState} from 'react';
 
 import {IonFab, IonFabButton, IonIcon, IonRefresher, IonRefresherContent} from '@ionic/react';
 
-import NavigatorPage from '../components/Navigator/NavigatorPage';
-import CouponList from '../components/Coupon/CouponList/CouponList';
-import NotFoundPage from './NotFoundPage';
-import NavigatorBackButton from '../components/Navigator/NavigatorBackButton';
+import NavigatorPage from '../../components/Navigator/NavigatorPage';
+import CouponList from '../../components/Coupons/CouponList';
+import NotFoundPage from '../NotFoundPage';
+import NavigatorBackButton from '../../components/Navigator/NavigatorBackButton';
 import {checkmarkDoneOutline, checkmarkDoneSharp} from 'ionicons/icons';
-import {NavigatorProps} from '../components/Navigator/types';
-import {useAppDispatch, useAppSelector} from '../../store';
-import {syncCoupons} from '../../helpers/coupons';
-import CouponWatchlistModal from '../components/CouponWatchlistModal/CouponWatchlistModal';
+import {NavigatorProps} from '../../components/Navigator/types';
+import {useAppDispatch, useAppSelector} from '../../../store';
+import {syncCoupons} from '../../../helpers/coupons';
+import CouponWatchlistModal from './Watchlist/CouponWatchlistModal';
 import {RouteComponentProps} from 'react-router';
 
 interface MatchProps {

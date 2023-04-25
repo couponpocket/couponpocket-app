@@ -5,10 +5,10 @@ const config = {
 
 switch (process.env?.REACT_APP_ENV) {
     case 'production':
-        config.apiEndpoint = 'https://app.couponpocket.de/api';
+        config.apiEndpoint = 'https://couponpocket.app/api';
         break;
     case 'test':
-        config.apiEndpoint = 'https://app.couponpocket.de/api';
+        config.apiEndpoint = 'https://couponpocket.app/api';
         break;
     default:
         break;

@@ -4,6 +4,9 @@
     padding-bottom: 40px;
 }
 
-.watchlist-slide .coupon-card {
-    width: 100%;
+.swiper-slide.watchlist-slide {
+    display: flex;
+    padding-bottom: 30px;
+    flex-direction: column;
+    justify-content: center;
 }

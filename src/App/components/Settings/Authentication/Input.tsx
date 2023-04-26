@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction, useCallback} from 'react';
+import React, {Dispatch, FC, SetStateAction, useCallback, useMemo} from 'react';
 import {IonInput, IonLabel, IonText} from '@ionic/react';
 import {InputChangeEventDetail, TextFieldTypes} from '@ionic/core';
 
@@ -22,6 +22,8 @@ interface InputProps {
 type inputChange = (event: IonInputCustomEvent<InputChangeEventDetail>) => void;
 
 const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setErrors, inputmode}) => {
+    const error = useMemo(() => errors && Object.keys(errors).includes(name) ? errors[name].toString() : '', [errors]);
+
     const inputChange: inputChange = useCallback((e) => {
         e.preventDefault();
 
@@ -45,12 +47,15 @@ const Input: FC<InputProps> = ({label, placeholder, name, type, errors, setError
                     {label}
                 </IonLabel>
             ) : null}
-            <div className="input-field">
-                <IonInput inputmode={inputmode} onIonChange={inputChange} type={type} name={name}
-                          placeholder={placeholder}/>
-            </div>
-            {errors && Object.keys(errors).includes(name) ? (
-                <IonText color="danger">{errors[name].toString()}</IonText>
+            <IonInput className={`input-field ${error ? 'has-error' : ''}`}
+                      legacy={true}
+                      inputmode={inputmode}
+                      onIonChange={inputChange}
+                      type={type}
+                      name={name}
+                      placeholder={placeholder}/>
+            {error ? (
+                <IonText color="danger">{error}</IonText>
             ) : null}
         </>
     );

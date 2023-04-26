@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV || 'development';
 
 const config: CapacitorConfig = {
     appId: 'de.couponpocket.app',
-    appName: 'Couponpocket',
+    appName: 'Coupon Pocket',
     webDir: 'build',
     loggingBehavior: env === 'development' ? 'debug' : 'production',
     plugins: {

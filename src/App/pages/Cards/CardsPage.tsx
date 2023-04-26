@@ -19,7 +19,7 @@ const Cards: FC<CardsPageProps> = ({title, router}) => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        (async () => await syncCards(token, dispatch))()
+        (async () => await syncCards(dispatch, token))()
     }, [dispatch, token]);
 
     return (
@@ -33,7 +33,7 @@ const Cards: FC<CardsPageProps> = ({title, router}) => {
                                </IonButton>
                            )
                        }}>
-            <IonRefresher slot="fixed" onIonRefresh={(e) => syncCards(token, dispatch, () => e.detail.complete())}>
+            <IonRefresher slot="fixed" onIonRefresh={(e) => syncCards(dispatch, token, () => e.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>
 

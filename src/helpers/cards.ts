@@ -4,8 +4,9 @@ import {setCardsState} from '../store/actions/cards';
 import {Toast} from '@capacitor/toast';
 import {AppDispatch} from '../store';
 
-export const syncCards = async (token: string | undefined, dispatch: AppDispatch, callback?: () => void) => {
+export const syncCards = async (dispatch: AppDispatch, token: string | undefined, callback?: () => void) => {
     if (!token) {
+        setCardsState({cards: [], cardTypes: []});
         return;
     }
 

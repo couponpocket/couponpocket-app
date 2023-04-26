@@ -5,13 +5,14 @@ import CouponCategoryList from '../../components/Coupons/CouponCategoryList';
 import {syncCoupons} from '../../../helpers/coupons';
 import NavigatorPage from '../../components/Navigator/NavigatorPage';
 import {NavigatorProps} from '../../components/Navigator/types';
-import {useAppDispatch} from '../../../store';
+import {useAppDispatch, useAppSelector} from '../../../store';
 import {addOutline, addSharp} from "ionicons/icons";
 
 type CouponCategoryPageProps = NavigatorProps;
 
 const CouponCategoryPage: FC<CouponCategoryPageProps> = ({title}) => {
     const dispatch = useAppDispatch();
+    const token = useAppSelector(state => state.authentication.token);
 
     return (
         <NavigatorPage title={title} buttons={{
@@ -21,7 +22,8 @@ const CouponCategoryPage: FC<CouponCategoryPageProps> = ({title}) => {
                 </IonButton>
             )
         }}>
-            <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(dispatch, () => event.detail.complete())}>
+            <IonRefresher slot="fixed"
+                          onIonRefresh={(event) => syncCoupons(dispatch, token, () => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>
 

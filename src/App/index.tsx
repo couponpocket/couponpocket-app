@@ -30,8 +30,8 @@ import './theme/variables.css';
 
 const loadInitialValues = async () => {
     try {
-        await syncCoupons(store.dispatch);
-        await syncCards(store.getState().authentication.token, store.dispatch);
+        await syncCoupons(store.dispatch, store.getState().authentication.token);
+        await syncCards(store.dispatch, store.getState().authentication.token);
     } catch (e) {
         console.log(e);
     }

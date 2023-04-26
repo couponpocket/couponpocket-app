@@ -25,6 +25,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
 
     const dispatch = useAppDispatch();
     const categories = useAppSelector(state => state.coupons.categories);
+    const token = useAppSelector(state => state.authentication.token);
 
     const partner = categories.find((item) => item.id.toString() === match.params.id);
 
@@ -42,7 +43,7 @@ const CouponPage: FC<CouponPage> = ({router, match}) => {
 
     return (
         <NavigatorPage title={partner.name} className="coupons" buttons={<NavigatorBackButton text="Coupons"/>}>
-            <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(dispatch, () => event.detail.complete())}>
+            <IonRefresher slot="fixed" onIonRefresh={(event) => syncCoupons(dispatch, token, () => event.detail.complete())}>
                 <IonRefresherContent/>
             </IonRefresher>
 

@@ -28,7 +28,7 @@ const CardsAddCategory: FC<CardsAddCategory> = ({setShowModal}) => {
 
     return (
         <NavigatorContent title="Karte hinzufügen" collapse={false} buttons={{
-            end: (
+            primary: (
                 <IonButton onClick={() => setShowModal(false)}>
                     <IonIcon ios={closeOutline} md={closeSharp}/>
                 </IonButton>

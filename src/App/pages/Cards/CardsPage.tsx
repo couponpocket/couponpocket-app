@@ -25,7 +25,7 @@ const Cards: FC<CardsPageProps> = ({title, router}) => {
     return (
         <NavigatorPage title={title}
                        buttons={{
-                           end: (
+                           primary: (
                                <IonButton onClick={() => setShowModal(true)}
                                           className="add-icon"
                                           fill="clear">

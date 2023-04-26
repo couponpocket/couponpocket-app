@@ -15,7 +15,7 @@ const CouponCategoryPage: FC<CouponCategoryPageProps> = ({title}) => {
 
     return (
         <NavigatorPage title={title} buttons={{
-            end: (
+            primary: (
                 <IonButton disabled>
                     <IonIcon slot="icon-only" ios={addOutline} md={addSharp}/>
                 </IonButton>

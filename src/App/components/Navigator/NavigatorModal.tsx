@@ -2,19 +2,15 @@ import React, {
     Dispatch,
     FC,
     PropsWithChildren,
-    ReactChild,
     ReactElement,
     SetStateAction
 } from 'react';
 import {IonModal} from '@ionic/react';
-import NavigatorContent from './NavigatorContent';
+import NavigatorContent, {NavigatorContentProps} from './NavigatorContent';
 
 export type NavigatorModalProps = PropsWithChildren<{
-    title?: ReactChild;
-    buttons?: {
-        start?: ReactElement;
-        end?: ReactElement;
-    } | ReactElement;
+    title?: NavigatorContentProps['title'];
+    buttons?: NavigatorContentProps['buttons'];
     headerChildren?: ReactElement;
     router?: HTMLIonRouterOutletElement;
     showModal: boolean;

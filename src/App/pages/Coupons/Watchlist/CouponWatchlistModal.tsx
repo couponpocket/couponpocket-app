@@ -55,7 +55,7 @@ const CouponWatchlistModal: FC<WatchlistModal> = ({router, showModal, setShowMod
                         modalClassName="watchlist-modal"
                         title={'Merkliste für ' + partner.name}
                         buttons={{
-                            end: (
+                            primary: (
                                 <IonButton onClick={() => setShowModal(false)}>
                                     <IonIcon ios={closeOutline} md={closeSharp}/>
                                 </IonButton>

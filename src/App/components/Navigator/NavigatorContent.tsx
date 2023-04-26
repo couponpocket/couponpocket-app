@@ -1,11 +1,11 @@
 import React, {FC, isValidElement, PropsWithChildren, ReactChild, ReactElement, useEffect, useState} from 'react';
 import {IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, isPlatform} from '@ionic/react';
 
-type NavigatorContentProps = PropsWithChildren<{
+export type NavigatorContentProps = PropsWithChildren<{
     title?: ReactChild;
     buttons?: {
-        start?: ReactElement;
-        end?: ReactElement;
+        primary?: ReactElement;
+        secondary?: ReactElement;
     } | ReactElement;
     collapse?: boolean;
     headerChildren?: {
@@ -24,22 +24,22 @@ const NavigatorContent: FC<NavigatorContentProps> = ({
     headerChildren,
     fullscreen = false
 }) => {
-    const [startButtons, setStartButtons] = useState<ReactElement | undefined>(undefined);
-    const [endButtons, setEndButtons] = useState<ReactElement | undefined>(undefined);
+    const [primaryButtons, setPrimaryButtons] = useState<ReactElement | undefined>(undefined);
+    const [secondaryButtons, setSecondaryButtons] = useState<ReactElement | undefined>(undefined);
 
     const [topHeaderChildren, setTopHeaderChildren] = useState<ReactElement | undefined>(undefined);
     const [bottomHeaderChildren, setBottomHeaderChildren] = useState<ReactElement | undefined>(undefined);
 
     useEffect(() => {
         if (isValidElement(buttons)) {
-            setStartButtons(buttons);
+            setSecondaryButtons(buttons);
         } else {
-            if (buttons?.start) {
-                setStartButtons(buttons.start);
+            if (buttons?.primary) {
+                setPrimaryButtons(buttons.primary);
             }
 
-            if (buttons?.end) {
-                setEndButtons(buttons.end);
+            if (buttons?.secondary) {
+                setSecondaryButtons(buttons.secondary);
             }
         }
     }, [buttons]);
@@ -69,8 +69,8 @@ const NavigatorContent: FC<NavigatorContentProps> = ({
         <>
             <IonHeader collapse={collapse ? 'fade' : undefined} translucent={true}>
                 <IonToolbar>
-                    {startButtons ? <IonButtons slot="secondary">{startButtons}</IonButtons> : null}
-                    {endButtons ? <IonButtons slot="primary">{endButtons}</IonButtons> : null}
+                    {secondaryButtons ? <IonButtons slot="secondary">{secondaryButtons}</IonButtons> : null}
+                    {primaryButtons ? <IonButtons slot="primary">{primaryButtons}</IonButtons> : null}
                     <IonTitle>{title}</IonTitle>
                 </IonToolbar>
                 {topHeaderChildren ? <IonToolbar>{topHeaderChildren}</IonToolbar> : null}

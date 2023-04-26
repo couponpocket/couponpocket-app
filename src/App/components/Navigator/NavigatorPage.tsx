@@ -1,19 +1,13 @@
-import React, {FC, PropsWithChildren, ReactChild, ReactElement} from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 import {IonPage} from '@ionic/react';
-import NavigatorContent from './NavigatorContent';
+import NavigatorContent, {NavigatorContentProps} from './NavigatorContent';
 
 type NavigatorPageProps = PropsWithChildren<{
-    title?: ReactChild;
-    buttons?: {
-        start?: ReactElement;
-        end?: ReactElement;
-    } | ReactElement;
-    collapse?: boolean;
+    title?: NavigatorContentProps['title'];
+    buttons?: NavigatorContentProps['buttons'];
+    collapse?: NavigatorContentProps['collapse'];
+    headerChildren?: NavigatorContentProps['headerChildren'];
     className?: string;
-    headerChildren?: {
-        top?: ReactElement;
-        bottom?: ReactElement;
-    } | ReactElement;
 }>
 
 const NavigatorPage: FC<NavigatorPageProps> = ({

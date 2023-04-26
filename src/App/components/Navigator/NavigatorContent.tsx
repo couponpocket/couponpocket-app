@@ -69,8 +69,8 @@ const NavigatorContent: FC<NavigatorContentProps> = ({
         <>
             <IonHeader collapse={collapse ? 'fade' : undefined} translucent={true}>
                 <IonToolbar>
-                    {startButtons ? <IonButtons slot="start">{startButtons}</IonButtons> : null}
-                    {endButtons ? <IonButtons slot="end">{endButtons}</IonButtons> : null}
+                    {startButtons ? <IonButtons slot="secondary">{startButtons}</IonButtons> : null}
+                    {endButtons ? <IonButtons slot="primary">{endButtons}</IonButtons> : null}
                     <IonTitle>{title}</IonTitle>
                 </IonToolbar>
                 {topHeaderChildren ? <IonToolbar>{topHeaderChildren}</IonToolbar> : null}
